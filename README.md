@@ -1,5 +1,13 @@
-# Boilerplate for a Fullstack Gatsby-apollo-chatkiller
+# Boilerplate for a Fullstack Gatsby-apollo-chatkiller 
  
+This repo is a fork from https://github.com/alan345/naperg
+
+Just with other feature:
+
+- Gastby to turn your app to an universal application http://gatsbyjs.org
+- better scalable server with **Typescript**
+
+## server written fully in typescript - power of type with prisma.ts
 ## Authentication with roles & permissions. Backend & Frontend  
 ## Chat with GraphQL Subscriptions 
 ## UI https://materializecss.com (material-ui will be replaced fully soon)
