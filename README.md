@@ -1,7 +1,6 @@
 # Boilerplate for a Fullstack Gatsby-apollo-chatkiller
  
-## Authentication with roles & permissions. Backend & Frontend 
-## Upload image with expressJs 
+## Authentication with roles & permissions. Backend & Frontend  
 ## Chat with GraphQL Subscriptions 
 ## UI https://materializecss.com (material-ui will be replaced fully soon)
 
@@ -13,7 +12,7 @@
 
 
 <div align="center"><strong>🚀 Bootstrap your fullstack GraphQL app within seconds</strong></div>
-<div align="center">Basic starter kit for a fullstack GraphQL app with React and Node.js - based on best practices from the GraphQL community.</div>
+<div align="center">Basic starter kit for a fullstack GraphQL app with React and Node.js </div>
 
 
 ## Project
