@@ -43,8 +43,8 @@
 |![connected object](https://j.gifs.com/VP9G0o.gif)|![connected object](https://j.gifs.com/860QVr.gif)|
 | Mobile Friendly  | Login with Avatar Profile |
 | ![Mobile friendly](https://j.gifs.com/1rDk1o.gif) | ![avatar profile](https://j.gifs.com/Q0Gk67.gif) |
-| REST API with graphql-yoga | |
-| ![REST API with graphql-yoga](https://j.gifs.com/L8mnpg.gif) ||
+| REST API without graphql-yoga (with apollo-server2) | |
+| ![REST API without graphql-yoga](https://j.gifs.com/L8mnpg.gif) ||
 
 
 
@@ -138,7 +138,7 @@ Frontend:
 
 Backend:
 * Server JS: ExpressJs http://expressjs.com/fr/
-* Server GraphQL: GraphQL yoga https://github.com/prismagraphql/graphql-yoga
+* Server GraphQL: GraphQL apollo-server-express https://github.com/apollographql/apollo-server
 * ORM (object-relational mapping): Prisma https://www.prisma.io/
 * Database MySQL: https://www.mysql.com/
 * Send email: nodemailer https://nodemailer.com/
