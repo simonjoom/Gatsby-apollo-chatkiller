@@ -3,7 +3,10 @@
 ## Authentication with roles & permissions. Backend & Frontend 
 ## Upload image with expressJs 
 ## Chat with GraphQL Subscriptions 
+## UI https://materializecss.com (material-ui will be replaced fully soon)
 
+### Using last version Apollo v2 and apollo-server@2.1.0
+### >>> No need anymore graphql-yoga with apollo-server2 <<<
 
 
 ![image](https://user-images.githubusercontent.com/15246526/38530809-7a9cc69e-3c21-11e8-8eb9-6f143eb7d64d.png)
@@ -52,44 +55,40 @@
 
 
 ## Getting started
-1/ In folder `/server/src/config` rename file `config_example.js` to `config.js` and add your own settings
+1/ install global
+> 
+> yarn update
+> npm install -g prisma
+> npm install -g prisma-cli
+> npm install -g graphql
 
+//current version prisma-cli@1.0.9
+//current version prisma@1.17.1
+//current version apollo-server@2.1.0
 
-2/ Install docker and Prisma cli. (https://www.prisma.io/docs/tutorials/setup-prisma/create-new-db/mysql-gui4peul2u)
-
+2/ This project use a free Cloud Prisma no need Docker
 
 3/ In folder `/server`, run:
-```sh
-#init app
-docker-compose up -d
-
-
+```sh 
+ 
 #Deploy app
 prisma deploy
 ```
 
-4/ In 3 different terminals:
-
+4/ In 2 different terminals:
 
 ```sh
 # Prisma: Graphql and mySql (port 4000)
 cd server
 yarn install
 yarn start
-```
+``` 
 
 ```sh
-# Media server: ExpressJs (port 8000)
-cd express
-yarn install
-yarn start
-```
-
-```sh
-# Frontend: ReactJs (port 3000)
+# Frontend: ReactJs (port 8000 in dev)
 cd react
 yarn install
-yarn start
+npm run develop
 ```
 
 Go to url: http://localhost:3000
@@ -98,7 +97,7 @@ Go to url: http://localhost:3000
 
 ## Features
 
-- **Scalable GraphQL server:** The server uses [`graphql-yoga`](https://github.com/prisma/graphql-yoga) which is based on Apollo Server & Express
+- **apollo server v2:** The server use Apollo Server 2 who is now run standalon without graphql-yoga
 - **Pre-configured Apollo Client:** The project comes with a preconfigured setup for Apollo Client
 - **GraphQL database:** Includes GraphQL database binding to [Prisma](https://www.prismagraphql.com) (running on MySQL)
 - **Tooling**: Out-of-the-box support for [GraphQL Playground](https://github.com/prisma/graphql-playground) & [query performance tracing](https://github.com/apollographql/apollo-tracing)
@@ -116,18 +115,11 @@ Go to url: http://localhost:3000
 For a fully-fledged **React & Apollo tutorial**, visit [How to GraphQL](https://www.howtographql.com/react-apollo/0-introduction/). You can more learn about the idea behind GraphQL boilerplates [here](https://blog.graph.cool/graphql-boilerplates-graphql-create-how-to-setup-a-graphql-project-6428be2f3a5).
 
 
-
 ## Documentation
 
 ### useful Commands
 
 * `prisma reset`
-* `docker container ls` list container
-* `docker stop database_prisma_1` stop container
-* `docker rm database_prisma_1` remove container
-* `docker stop $(docker ps -a -q)` stop all container
-* `docker rm $(docker ps -a -q)` remove all container
-* `docker-compose up -d` init app
 * `prisma deploy` Deploy app
 
 * `eslint .` Check JS/react syntax with eslint-plugin-react
@@ -140,13 +132,11 @@ For a fully-fledged **React & Apollo tutorial**, visit [How to GraphQL](https://
 > **Note**: We recommend that you're using `yarn dev` during development as it will give you access to the GraphQL API or your server (defined by the application schema as well as to the Prisma API directly (defined by the Prisma database schema. If you're starting the server with `yarn start`, you'll only be able to access the API of the application schema.
 
 
-
-
 ## Made with..
 
 Frontend:
 * User interfaces: React https://reactjs.org/
-* Design: material-ui-next https://material-ui-next.com/
+* Design: https://materializecss.com
 * GraphQL tool: Apollo Client https://www.apollographql.com/
 
 Backend:
@@ -162,9 +152,7 @@ Backend:
 
 Your feedback is **very helpful**, please share your opinion and thoughts! If you have any questions or want to contribute yourself, don't hesitate!
 
-# Buy me a drink!
+# Hire us!
+If this project help you reduce time to develop, we can help you in other task
 
-If this project help you reduce time to develop, you can give me a cup of coffee :)
-
-
-[![paypal](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CLPDWGN5UA4CU)
+Email:simon@skiscool.com

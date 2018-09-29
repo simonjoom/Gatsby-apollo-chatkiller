@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "react-apollo-gatsby-server",
   "scripts": {
     "dev": "npm-run-all --parallel start playground",
     "start": "nodemon -e ts,graphql -x ts-node -r dotenv/config src/index.ts",
