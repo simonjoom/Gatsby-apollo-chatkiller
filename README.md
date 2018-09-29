@@ -22,7 +22,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/simonjoom/Gatsby-apollo-chatkiller.svg)](https://github.com/simonjoom/Gatsby-apollo-chatkiller/stargazers)
 [![GitHub license](https://img.shields.io/github/license/simonjoom/Gatsby-apollo-chatkiller.svg)](https://github.com/simonjoom/Gatsby-apollo-chatkiller/blob/master/LICENSE) 
 ![price](https://img.shields.io/badge/Price-Free-green.svg)
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/simonjoom/Gatsby-apollo-chatkiller.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Falan345%2Fnaperg)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/simonjoom/Gatsby-apollo-chatkiller.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%simonjoom%Gatsby-apollo-chatkiller)
 
 
 ## Screenshots
