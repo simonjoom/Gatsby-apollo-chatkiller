@@ -1,0 +1,38 @@
+{
+  "name": "my-app",
+  "scripts": {
+    "dev": "npm-run-all --parallel start playground",
+    "start": "nodemon -e ts,graphql -x ts-node -r dotenv/config src/index.ts",
+    "playground": "graphql playground",
+    "build": "rm -rf dist && graphql codegen && tsc",
+    "prisma": "prisma",
+    "resolver-interfaces": "graphql-resolver-codegen interfaces -s src/schema.graphql -o ./src/generated/resolvers.ts",
+    "resolver-scaffold": "graphql-resolver-codegen scaffold -s src/schema.graphql -o ./src/resolvers-2/ -i ../generated/resolvers",
+    "resolver-codegen": "npm-run-all resolver-interfaces resolver-scaffold"
+  },
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "apollo-server": "latest",
+    "dotenv": "^6.0.0",
+    "graphql-resolver-codegen": "^0.0.3",
+    "jsonwebtoken": "8.3.0",
+    "graphql-import":"latest",
+    "nodemailer": "4.6.7",
+    "prisma":"latest",
+    "prisma-binding": "latest",
+    "prisma-client-lib": "latest",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.3"
+  },
+  "devDependencies": {
+    "npm-run-all": "latest"
+  },
+  "resolutions": { 
+    "graphql-cli": "^2.16.7"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
+}

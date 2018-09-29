@@ -1,0 +1,12 @@
+endpoint: https://eu1.prisma.sh/simz-99dd8e/williamimoh/dev
+datamodel: datamodel.graphql
+
+generate:
+  - generator: typescript-client
+    output: ../src/prisma-client/
+
+hooks:
+  post-deploy:
+    - prisma generate
+    - graphql get-schema --project db
+    - graphql codegen

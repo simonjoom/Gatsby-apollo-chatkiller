@@ -1,0 +1,33 @@
+# import Post,User,ChatSubscriptionPayload,ChatSubscriptionWhereInput,CarCreateInput,CarUpdateInput,CarWhereUniqueInput from './generated/prisma.graphql'
+
+# import Mutation.deleteCar,Mutation.deleteUser,Query.user,Mutation.createChat,Mutation.createPost,Query.chatsConnection,Query.car,Query.carsConnection,Query.usersConnection,Mutation.updateUser,Mutation.createUser from './generated/prisma.graphql'
+
+type Query {
+  me: User
+  feed: [Post!]!
+  drafts(orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]!
+  post(id: ID!): Post
+}
+
+type Mutation {
+  signup(email: String!, password: String!, name: String!, nameFile: String!): AuthPayload!
+  resetPassword(password: String!, resetPasswordToken: String!): AuthPayload!
+  sendLinkValidateEmail: User!
+  validateEmail(validateEmailToken: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  deletePost(id: ID!): Post
+  publish(id: ID!): Post
+  createCar(data: CarCreateInput!): Car!
+  updateCar(data: CarUpdateInput!, where: CarWhereUniqueInput!): Car
+  updatePassword(oldPassword: String, newPassword: String!): User!
+  forgetPassword(email: String!): User!
+}
+
+type Subscription {
+  chat(where: ChatSubscriptionWhereInput): ChatSubscriptionPayload 
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
