@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon from '@material-ui/core/Icon'
+import Icon from '../../reactLIB/Icon'
 
 export default class ArrowOrderBy extends React.Component {
   render() {

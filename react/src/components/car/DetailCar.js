@@ -5,8 +5,8 @@ import gql from "graphql-tag";
 import { getIdfromRegexPath } from "../../utils";
 import Paper from "@material-ui/core/Paper";
 import NotFound from "../error/NotFound";
-import Button from "@material-ui/core/Button";
-import Icon from "@material-ui/core/Icon";
+import Button from "../../reactLIB/Button";
+import Icon from "../../reactLIB/Icon";
 import Loading from "../error/Loading";
 import { SideBarContext } from "../SideBarContext";
 

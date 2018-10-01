@@ -32,7 +32,7 @@ CardTitle.propTypes = {
   // the waves effect
   waves: PropTypes.oneOf(constants.WAVES),
   // The path to the image
-  image: PropTypes.string.isRequired
+  image: PropTypes.string
 };
 
 export default CardTitle;

@@ -6,9 +6,9 @@ import { graphql, compose } from 'react-apollo'
 import { withApollo } from 'react-apollo'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
-import Input from '../../reactLIB/Input'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import Icon from '@material-ui/core/Icon'
+import Input from '@material-ui/core/Input'
+// import InputAdornment from '@material-ui/core/InputAdornment'
+// import Icon from '@material-ui/core/Icon'
 
 class CreateChat extends React.Component {
   state = {
@@ -17,7 +17,7 @@ class CreateChat extends React.Component {
 
   render() {
     return (
-      <div style={{margin:10}}>
+      <div style={{margin:5}}>
         <Paper className='paperIn'>
           <form onSubmit={this.handleChat}>
             <FormControl className='width100Perc'>
@@ -28,15 +28,15 @@ class CreateChat extends React.Component {
                 onChange={e => this.setState({ message: e.target.value })}
                 value={this.state.message}
                 endAdornment={
-                  <InputAdornment position='end'>
+                  <div position='end'>
                       <Button
                         onClick={this.handleNext}
                         disabled={!this.state.message}
                         type='submit'
-                        variant='fab' color='primary' mini>
-                        <Icon>navigate_next</Icon>
+                        variant='fab' color='primary' style={{marginLeft:'10px'}}>
+                        Send
                       </Button>
-                  </InputAdornment>
+                  </div>
                 }
               />
             </FormControl>

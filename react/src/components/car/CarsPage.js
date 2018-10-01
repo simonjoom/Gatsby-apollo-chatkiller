@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CarsPageList from "./CarsPageList";
 import { navigate } from "gatsby";
-import Button from "@material-ui/core/Button";
+import Button from "../../reactLIB/Button";
 import Paper from "@material-ui/core/Paper";
 import ArrowOrderBy from "./ArrowOrderBy";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -42,7 +42,7 @@ class CarsPage extends Component {
             type="text"
             label="Search"
             endAdornment={
-              <InputAdornment position="end">
+              <div position="end">
                 {this.state.query ? (
                   <Icon onClick={clearQuery}>clear</Icon>
                 ) : (
@@ -52,7 +52,7 @@ class CarsPage extends Component {
                   orderBy={this.state.orderBy}
                   onOrderBy={orderBy => this.setState({ orderBy: orderBy })}
                 />
-              </InputAdornment>
+              </div>
             }
           />{" "}
           <Button

@@ -2,11 +2,12 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { navigate } from "gatsby"; 
 import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button'
+import Button from '../../reactLIB/Button'
 import { graphql, compose,withApollo } from 'react-apollo' 
-import Input from '@material-ui/core/Input'
-import InputLabel from '@material-ui/core/InputLabel'
-import FormControl from '@material-ui/core/FormControl'
+import Input from '../../reactLIB/Input'
+// import InputLabel from '@material-ui/core/InputLabel'
+// import FormControl from '@material-ui/core/FormControl'
+import Row from '../../reactLIB/Row'
 
 class CreateCar extends React.Component {
   state = {
@@ -19,8 +20,8 @@ class CreateCar extends React.Component {
         <Paper className='paperIn'>
         <form onSubmit={this.handleCar}>
           <h1>Create Car</h1>
-            <FormControl>
-              <InputLabel htmlFor='name'>Name</InputLabel>
+            <Row>
+              {/* <InputLabel htmlFor='name'>Name</InputLabel> */}
               <Input
                 id='name'
                 autoComplete='off'
@@ -28,10 +29,11 @@ class CreateCar extends React.Component {
                 onChange={e => this.setState({ name: e.target.value })}
                 type='text'
                 value={this.state.name}
+                placeholder="Car name"
               />
-            </FormControl>
-            <br/>
-            <br/>
+            </Row>
+            {/* <br/> */}
+            {/* <br/> */}
           <Button
             className={`pa3 bg-black-10 bn`}
             disabled={!this.state.name}

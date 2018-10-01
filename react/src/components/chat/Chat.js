@@ -1,6 +1,6 @@
 import React from 'react'
 import ImageTemplate from '../nav/ImageTemplate'
-import Card from '@material-ui/core/Card'
+import CardPanel from '../../reactLIB/CardPanel'
 import CardHeader from '@material-ui/core/CardHeader'
 import Tooltip from '@material-ui/core/Tooltip'
 
@@ -13,7 +13,7 @@ class Chat extends React.Component {
   }
   render() {
     return ( 
-        <Card>
+        <CardPanel style={cardStyle}>
           <CardHeader
             avatar={
               <div>
@@ -26,12 +26,24 @@ class Chat extends React.Component {
                 )}
               </div>
             }
+            style={{cardHeaderStyle}}
             title={<b>{this.props.chat.message}</b>}
             subheader={format(parse(this.props.chat.createdAt), 'MM/DD/YYYY hh:mma')}
           />
-        </Card> 
+        </CardPanel> 
     )
   }
+}
+const cardStyle = {
+  height: '60px',
+  boxShadow: '0px 0px 5px 0px black',
+  padding:0,
+  margin:'3% 1%'
+}
+
+const cardHeaderStyle={
+  padding: '20px',
+  margin:50
 }
 
 export default Chat
