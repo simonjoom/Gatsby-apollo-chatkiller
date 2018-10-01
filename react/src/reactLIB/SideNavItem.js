@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { UserView, UserShape } from './UserView';
+import './index.css'
+
 
 class SideNavItem extends Component {
   render() {

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import idgen from './idgen';
+import './index.css'
+
 
 class SideNav extends Component {
   constructor(props) {

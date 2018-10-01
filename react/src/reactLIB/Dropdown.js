@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import idgen from './idgen';
 import cx from 'classnames';
+import './index.css'
+
 
 const classes = {
   'dropdown-content': true

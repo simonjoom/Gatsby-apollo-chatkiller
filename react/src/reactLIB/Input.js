@@ -4,6 +4,7 @@ import cx from 'classnames';
 import idgen from './idgen';
 import constants from './constants';
 import Icon from './Icon';
+import './index.css'
 
 class Input extends Component {
   constructor(props) {

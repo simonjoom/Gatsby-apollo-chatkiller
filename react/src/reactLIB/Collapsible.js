@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import './index.css'
+
 
 class Collapsible extends Component {
   constructor(props) {

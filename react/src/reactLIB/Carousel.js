@@ -1,6 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import './index.css'
+
 
 class Carousel extends React.Component {
   constructor(props) {

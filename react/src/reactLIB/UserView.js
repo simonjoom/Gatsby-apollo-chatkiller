@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './index.css'
+
 
 export const UserShape = {
   background: PropTypes.string,

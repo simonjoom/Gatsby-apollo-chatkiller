@@ -4,6 +4,8 @@ import constants from './constants';
 import cx from 'classnames';
 import Icon from './Icon';
 import idgen from './idgen';
+import './index.css'
+
 
 class Button extends Component {
   constructor(props) {

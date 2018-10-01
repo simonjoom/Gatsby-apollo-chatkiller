@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Row from './Row';
 import Col from './Col';
+import './index.css'
+
 
 class Footer extends Component {
   render() {
