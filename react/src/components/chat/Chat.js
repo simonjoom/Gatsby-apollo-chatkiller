@@ -15,6 +15,7 @@ class Chat extends React.Component {
     return ( 
         <CardPanel style={cardStyle}>
           <CardHeader
+            style={{cardHeaderStyle}}
             avatar={
               <div>
                 {this.props.chat.author && (
@@ -26,7 +27,6 @@ class Chat extends React.Component {
                 )}
               </div>
             }
-            style={{cardHeaderStyle}}
             title={<b>{this.props.chat.message}</b>}
             subheader={format(parse(this.props.chat.createdAt), 'MM/DD/YYYY hh:mma')}
           />
@@ -38,11 +38,13 @@ const cardStyle = {
   height: '60px',
   boxShadow: '0px 0px 5px 0px black',
   padding:0,
+  borderRadius: '10px',
+  // paddingBottom:'10px',
   margin:'3% 1%'
 }
 
 const cardHeaderStyle={
-  padding: '20px',
+  padding: 0,
   margin:50
 }
 

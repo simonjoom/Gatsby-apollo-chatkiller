@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { AUTH_TOKEN } from '../../constants/constants'
 import Paper from '@material-ui/core/Paper'
-import Icon from '@material-ui/core/Icon' 
+import Icon from '../../reactLIB/Icon' 
 import ResendEmailValidation from './ResendEmailValidation'
 
 class EmailValidated extends Component {

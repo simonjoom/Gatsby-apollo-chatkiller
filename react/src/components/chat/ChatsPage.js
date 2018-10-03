@@ -20,12 +20,12 @@ class ChatsPage extends Component {
       return <NotAuth />;
     }
     return (
-      <div style={{ margin: 10 }}>
-        <Paper className="paperIn">
-          <h1>Chat</h1> 
+      <div style={{ margin: 0 }}>
+        <div className="paperIn">
+          <p style={{fontSize:'1.4em'}}>Let's know if you have any questions</p> 
             <ChatsPageList orderBy={this.state.orderBy} /> 
           <CreateChat />
-        </Paper>
+        </div>
       </div>
     );
   }

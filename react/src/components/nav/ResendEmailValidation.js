@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
-import Button from '@material-ui/core/Button'
+import Button from '../../reactLIB/Button'
 import SnackBarCustom from './SnackBarCustom'
 
 class ResendEmailValidation extends Component {
