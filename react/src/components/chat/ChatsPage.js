@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ChatsPageList from "./ChatsPageList";
 import CreateChat from "./CreateChat";
-import Paper from "@material-ui/core/Paper";
 import NotAuth from "../error/NotAuth";
 import { AUTH_TOKEN } from "../../constants/constants";
 
@@ -20,9 +19,9 @@ class ChatsPage extends Component {
       return <NotAuth />;
     }
     return (
-      <div style={{ margin: 0 }}>
-        <div className="paperIn">
-          <p style={{fontSize:'1.4em'}}>Let's know if you have any questions</p> 
+      <div style={{ margin: 0, padding:0, backgroundColor: 'white' }}>
+        <div className="paperIn" style={{margin:0, padding:0, marginTop: 5}}>
+          <p style={{fontSize:'1.4em', margin:10}}>Let's know if you have any questions</p> 
             <ChatsPageList orderBy={this.state.orderBy} /> 
           <CreateChat />
         </div>

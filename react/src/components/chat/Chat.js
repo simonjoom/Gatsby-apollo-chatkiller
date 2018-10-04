@@ -15,7 +15,7 @@ class Chat extends React.Component {
     return ( 
         <CardPanel style={cardStyle}>
           <CardHeader
-            style={{cardHeaderStyle}}
+            root={{cardHeaderStyle}}
             avatar={
               <div>
                 {this.props.chat.author && (
@@ -36,15 +36,15 @@ class Chat extends React.Component {
 }
 const cardStyle = {
   height: '60px',
-  boxShadow: '0px 0px 5px 0px black',
+  boxShadow: '0px 0px 10px 0px black',
   padding:0,
   borderRadius: '10px',
   // paddingBottom:'10px',
-  margin:'3% 1%'
+  margin:'5% 5%'
 }
 
 const cardHeaderStyle={
-  padding: 0,
+  paddingTop: 10,
   margin:50
 }
 
