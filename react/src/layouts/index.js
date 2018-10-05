@@ -7,6 +7,8 @@ import Loading from "../components/error/Loading";
 import NotAuth from "../components/error/NotAuth";
 import "../index.css";
 import "./index.scss";
+import Col from "../reactLIB/Col"
+import Badge from "../reactLIB/Badge"
 /*import {
   BrowserRouter as Router,
   Route,
@@ -93,15 +95,16 @@ class App extends Component {
           <SideBar />
           <div
             style={{
-              width: 600,
+              width: 350,
               position: "absolute",
               right: 0,
-              bottom: 0
+              bottom: 0,
+              margin:10
             }}
           >
             <ul className="collapsible popout">
               <li>
-                <div className="collapsible-body">
+                <div className="collapsible-body" style={{padding:0}}>
                   {Me.loading && <Loading />}
                   {!global.isSSR || (Me.error && <NotAuth />)}
                   <Header location={propstoshare.location} />
@@ -131,10 +134,11 @@ class App extends Component {
                     <Page path="/" default/>
                   </FadeTransitionRouter>
                 </div>
-                <div className="collapsible-header">
-                  <i className="material-icons">whatshot</i>
-                  OPENCHAT
-                </div>
+                <Col className="collapsible-header" style={collapsibleStyle}>
+                    <i className="material-icons">chat</i>
+                    Need Help?
+                    <Badge newIcon>4</Badge>
+                </Col>
               </li>
             </ul>
           </div>
@@ -142,6 +146,9 @@ class App extends Component {
       </SideBarContext.Provider>
     );
   }
+}
+const collapsibleStyle={
+  height:70, display:'flex', justifyContent:'center', alignItems:'center'
 }
 
 const FadeTransitionRouter = ({ propstoshare, children }) => {

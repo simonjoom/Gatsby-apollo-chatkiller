@@ -1,15 +1,10 @@
 import React from 'react'
 import gql from 'graphql-tag'
-// import Paper from '@material-ui/core/Paper'
 import Button from '../../reactLIB/Button'
 import Row from '../../reactLIB/Row'
 import { graphql, compose } from 'react-apollo'
 import { withApollo } from 'react-apollo'
-// import FormControl from '@material-ui/core/FormControl'
-// import InputLabel from '@material-ui/core/InputLabel'
-import Input from '@material-ui/core/Input'
-// import InputAdornment from '@material-ui/core/InputAdornment'
-// import Icon from '@material-ui/core/Icon'
+import Input from '../../reactLIB/Input'
 
 class CreateChat extends React.Component {
   state = {
@@ -18,30 +13,25 @@ class CreateChat extends React.Component {
 
   render() {
     return (
-      <div style={{ backgroundColor:'#7480C2'}}>
-        <div className='paperIn'>
+      <div style={{ backgroundColor:'#fff', height:'80px'}}>
           <form onSubmit={this.handleChat}>
-            <Row style={{width:'100%'}}>
-            {/* <label>Message</label> */}
+            <Row style={{width:'100%', marginTop: 20}}>
               <Input
-                id='message'
                 label="message"
-                autoComplete='off'
                 onChange={e => this.setState({ message: e.target.value })}
                 value={this.state.message}
-                style={{width:'80%'}}
-                placeholder='Drop us a message'
+                s={9}
               />
               <Button
+                className="btn btn-small"
                 onClick={this.handleNext}
                 disabled={!this.state.message}
                 type='submit'
-                variant='fab' color='primary' style={{marginLeft:'10px'}}>
+                variant='fab' color='primary' style={{marginTop:'20px'}}>
                 Send
               </Button>
             </Row>
           </form>
-        </div>
       </div>
     )
   }

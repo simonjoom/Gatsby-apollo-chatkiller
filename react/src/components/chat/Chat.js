@@ -1,11 +1,21 @@
 import React from 'react'
-import ImageTemplate from '../nav/ImageTemplate'
+// import ImageTemplate from '../nav/ImageTemplate'
 import CardPanel from '../../reactLIB/CardPanel'
 import CardHeader from '@material-ui/core/CardHeader'
-import Tooltip from '@material-ui/core/Tooltip'
+// import Tooltip from '@material-ui/core/Tooltip'
+import {withStyles} from '@material-ui/core/styles'
+// import Button from '../../reactLIB/Button';
+// import Icon from '../../reactLIB/Icon'
+import image from '../../../public/avatar.jpg'
 
 var parse = require('date-fns/parse')
 var format = require('date-fns/format')
+
+const StyledCard = withStyles({
+  root:{
+    paddingTop: 10
+  }
+})(CardHeader)
 
 class Chat extends React.Component {
   openProfile(author) {
@@ -14,17 +24,18 @@ class Chat extends React.Component {
   render() {
     return ( 
         <CardPanel style={cardStyle}>
-          <CardHeader
+          <StyledCard
             root={{cardHeaderStyle}}
             avatar={
               <div>
-                {this.props.chat.author && (
+                {/* {this.props.chat.author && (
                   <Tooltip  title={this.props.chat.author.name}>
                     <div onClick={()=>this.openProfile(this.props.chat.author)}>
                       <ImageTemplate format={'avatar'} nameFile={this.props.chat.author.nameFile}/>
                     </div>
                   </Tooltip>
-                )}
+                )} */}
+                <img src={image} width='40px' height="40px"/>
               </div>
             }
             title={<b>{this.props.chat.message}</b>}
@@ -38,7 +49,7 @@ const cardStyle = {
   height: '60px',
   boxShadow: '0px 0px 10px 0px black',
   padding:0,
-  borderRadius: '10px',
+  borderRadius: '5px',
   // paddingBottom:'10px',
   margin:'5% 5%'
 }
