@@ -4,7 +4,7 @@ import CardPanel from '../../reactLIB/CardPanel'
 import CardHeader from '@material-ui/core/CardHeader'
 // import Tooltip from '@material-ui/core/Tooltip'
 import {withStyles} from '@material-ui/core/styles'
-import image from '../../../public/avatar.jpg'
+import image from '../../../public/newavatar.png'
 
 var parse = require('date-fns/parse')
 var format = require('date-fns/format')
@@ -33,7 +33,8 @@ class Chat extends React.Component {
                     </div>
                   </Tooltip>
                 )} */}
-                <img src={image} width='40px' height="40px"/>
+                {/* <img src={image} width='40px' height="40px"/> */}
+                <img src={image} width="40px" height="40px" style={{borderRadius:'100%', backgroundColor:'grey', padding: '1.5%'}}/>
               </div>
             }
             title={<b>{this.props.chat.message}</b>}
