@@ -4,8 +4,6 @@ import CardPanel from '../../reactLIB/CardPanel'
 import CardHeader from '@material-ui/core/CardHeader'
 // import Tooltip from '@material-ui/core/Tooltip'
 import {withStyles} from '@material-ui/core/styles'
-// import Button from '../../reactLIB/Button';
-// import Icon from '../../reactLIB/Icon'
 import image from '../../../public/avatar.jpg'
 
 var parse = require('date-fns/parse')

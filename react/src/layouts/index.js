@@ -9,6 +9,7 @@ import "../index.css";
 import "./index.scss";
 import Col from "../reactLIB/Col"
 import Badge from "../reactLIB/Badge"
+import avatar from "../../public/newavatar.png"
 /*import {
   BrowserRouter as Router,
   Route,
@@ -135,7 +136,7 @@ class App extends Component {
                   </FadeTransitionRouter>
                 </div>
                 <Col className="collapsible-header" style={collapsibleStyle}>
-                    <i className="material-icons">chat</i>
+                    <img src={avatar} width="40px" height="40px" style={{marginRight:'10px', borderRadius:'100%', backgroundColor:'grey', padding: '1.5%'}}/>
                     Need Help?
                     <Badge newIcon>4</Badge>
                 </Col>
