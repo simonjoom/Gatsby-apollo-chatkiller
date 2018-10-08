@@ -14,6 +14,7 @@ import UploadFile from "../nav/UploadFile";
 import { withApollo } from "react-apollo";
 import Loading from "../error/Loading";
 import UserPageForm from "./UserPageForm";
+import Col from "../../reactLIB/Col"
 
 class UserPage extends React.Component {
   state = {
@@ -51,7 +52,7 @@ class UserPage extends React.Component {
 
     return (
       <div className="paperOut">
-        <Paper className="paperIn">
+        <div className="paperIn">
           <div className="flex justify-between items-center">
             <h1 className="f3 black-80 fw4 lh-solid">
               {this.props.userQuery.user.name}{" "}
@@ -59,6 +60,7 @@ class UserPage extends React.Component {
                 onClick={() =>
                   this.setState({ isEditMode: !this.state.isEditMode })
                 }
+                className="edit"
               >
                 border_color
               </Icon>
@@ -120,7 +122,7 @@ class UserPage extends React.Component {
             </div>
           )}
           {this.props.children}
-        </Paper>
+        </div>
       </div>
     );
   }

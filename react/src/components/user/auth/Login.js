@@ -4,9 +4,11 @@ import { graphql, compose, withApollo } from 'react-apollo'
 import { navigate } from "gatsby"; 
 import gql from 'graphql-tag'
 import SnackBarCustom from '../../nav/SnackBarCustom'
-import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
+import Button from '../../../reactLIB/Button'
+import Card from "../../../reactLIB/Card"
+
+import Input from '../../../reactLIB/Input'
+import Row from '../../../reactLIB/Row'
 
 export class Login extends Component {
   state = {
@@ -18,13 +20,13 @@ export class Login extends Component {
   render() {
     return (
       <div className='paperOut'>
-        <Paper className='paperIn'>
+        <Card className='paperIn'>
         <h4 className='mv3'>
           Login
         </h4>
         <div className='flex flex-column'>
 
-          <TextField
+          {/* <TextField
             id='email'
             value={this.state.email}
             onChange={e => this.setState({ email: e.target.value })}
@@ -37,24 +39,66 @@ export class Login extends Component {
             onChange={e => this.setState({ password: e.target.value })}
             type='password'
             label='Password'
-          />
+          /> */}
+          <Row style={{width:'100%', marginTop: 20}}>
+            <Input
+              id='email'
+              value={this.state.email}
+              onChange={e => this.setState({ email: e.target.value })}
+              type='text'
+              label='Your email address'
+              s={12}
+              
+            />
+            <Input
+              id='password'
+              value={this.state.password}
+              onChange={e => this.setState({ password: e.target.value })}
+              type='password'
+              label='Password'
+              s={12}
+            />
+            {/* <Button
+              className="btn btn-small"
+              onClick={this.handleNext}
+              disabled={!this.state.message}
+              type='submit'
+              variant='fab' color='primary' style={{marginTop:'20px'}}>
+              Send
+            </Button> */}
+          </Row>
 
         </div>
-        <div className='flex mt3'>
-          <Button id='ok' variant='raised' onClick={() => this._confirm()}>
-            Ok
+        <div className='flex' style={{display:"flex", justifyContent: "center"}}>
+          <Button
+           className="btn btn-small"
+           id='ok' 
+           variant='raised' 
+           onClick={() => this._confirm()}
+           style={{margin: '5%'}}
+           >
+            Signin
           </Button>
-          <Button variant='flat'
+
+          <Button 
+            className="btn btn-small"
+            variant='flat'
             onClick={() => navigate('/signup')}
+            style={{margin: '5%'}}
           >signup
           </Button>
-          <Button variant='flat'
+        </div>
+        <div className="flex" style={{display:"flex", justifyContent: "center"}}>
+        <Button 
+            className="btn btn-small"
+            variant='flat'
             onClick={() => navigate('/forgetPassword')}
-          >Forget Password
+            style={{margin: '2%'}}
+          >Forgot Password
           </Button>
         </div>
         <SnackBarCustom ref={instance => { this.child = instance }}/>
-      </Paper>
+      </Card>
       </div>
     )
   }
