@@ -1,18 +1,34 @@
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700|Material+Icons');
+
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-}
+  height: 100%;
+} 
 
 
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700|Material+Icons');
+@import "../scss/globals";
+@import "../scss/typography";
+@import "../scss/transitions";
+@import "../scss/helpers";
+@import "../scss/grids";
+@import "../scss/components/cards";
+@import "../scss/components/papers";
+@import "../scss/components/media";
+@import "../scss/components/buttons";
+@import "../scss/components/avatars";
+@include react-md-typography;
+@include react-md-helpers-blocks;
+@include react-md-grid;
+@include react-md-cards;
+@include react-md-avatars;
+@include react-md-papers;
+@include react-md-media;
+@include react-md-buttons;
 //@include react-md-everything;
 
 .md-btn:hover{
