@@ -26,9 +26,9 @@ export default props => {
 // if noauthtoken show login page by default else show chatslist
 
   const Comp =
-    location.pathname == "/user/create"
+    location.pathname == "/z/user/create"
       ? UserPageCreate
-      : location.pathname == "/users"
+      : location.pathname == "/z/users"
         ? UsersPage
         : location.pathname.indexOf("/user/") == !-1 //:id
           ? UserPage
@@ -40,25 +40,25 @@ export default props => {
                 ? Api
                 : location.pathname.indexOf("/car/") == !-1 //:id
                   ? DetailCar
-                  : location.pathname == "/create"
+                  : location.pathname == "/z/create"
                     ? CreatePage
-                    : location.pathname == "/drafts"
+                    : location.pathname == "/z/drafts"
                       ? DraftsPage
-                      : location.pathname == "/login"
+                      : location.pathname == "/z/login"
                         ? Login
-                        : location.pathname == "/posts"
+                        : location.pathname == "/z/posts"
                           ? FeedPage
-                          : location.pathname.indexOf("/post/") == !-1 //:id
+                          : location.pathname.indexOf("/z/post/") == !-1 //:id
                             ? DetailPage
-                            : location.pathname == "/forgetPassword"
+                            : location.pathname == "/z/forgetPassword"
                               ? ForgetPassword
-                              : location.pathname == "/resetPassword"
+                              : location.pathname == "/z/resetPassword"
                                 ? ResetPassword
-                                : location.pathname == "/updatePassword"
+                                : location.pathname == "/z/updatePassword"
                                   ? UpdatePassword
-                                  : location.pathname == "/validateEmail"
+                                  : location.pathname == "/z/validateEmail"
                                     ? ValidateEmail
-                                    : location.pathname == "/signup"
+                                    : location.pathname == "/z/signup"
                                       ? Signup
                                       : !authToken
                                         ? Login
