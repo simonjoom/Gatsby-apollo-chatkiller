@@ -114,7 +114,7 @@ class UserPage extends React.Component {
               </div>
             )}
           </div>
-          {authToken && (
+          {/*authToken && (
             <div className="f6 ba ph3 pv2 mb2 black">
               <h1>Posts from {this.props.userQuery.user.name}</h1>
               {this.props.userQuery.user.posts &&
@@ -122,7 +122,7 @@ class UserPage extends React.Component {
                   <Post key={post.id} post={post} />
                 ))}
             </div>
-          )}
+          )*/}
           {this.props.children}
         </Card>
       </div>
