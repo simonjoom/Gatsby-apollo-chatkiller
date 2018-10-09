@@ -30,15 +30,15 @@ export default props => {
       ? UserPageCreate
       : location.pathname == "/z/users"
         ? UsersPage
-        : location.pathname.indexOf("/user/") == !-1 //:id
+        : location.pathname.indexOf("/z/user/") == !-1 //:id
           ? UserPage
-          : location.pathname == "/car/create"
+          : location.pathname == "/z/car/create"
             ? CreateCar
-            : location.pathname == "/cars"
+            : location.pathname == "/z/cars"
               ? CarsPage
-              : location.pathname == "/api"
+              : location.pathname == "/z/api"
                 ? Api
-                : location.pathname.indexOf("/car/") == !-1 //:id
+                : location.pathname.indexOf("/z/car/") == !-1 //:id
                   ? DetailCar
                   : location.pathname == "/z/create"
                     ? CreatePage

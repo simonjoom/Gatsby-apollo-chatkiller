@@ -34,7 +34,7 @@ class Signup extends Component {
     typeof M !== "undefined" && M.toast({ html: toastHTML });
   }
 
-  onChange2(statePasword) {
+  onChange(statePasword) {
     this.setState({
       password: statePasword.password,
       inputValidation2: statePasword.inputValidation2
@@ -188,7 +188,7 @@ class Signup extends Component {
               {this.state.activeStep >= 2 && (
                 <Password
                   handleNext={this.handleNext.bind(this)}
-                  onChange2={this.onChange2.bind(this)}
+                  onChange={this.onChange.bind(this)}
                   ButtonNext={ButtonNext}
                 />
               )}

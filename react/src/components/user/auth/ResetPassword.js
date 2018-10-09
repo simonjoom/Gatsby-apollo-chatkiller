@@ -35,7 +35,7 @@ class ResetPassword extends Component {
     }
   }
 
-  onChange2(statePasword) { 
+  onChange(statePasword) { 
     this.setState({
       password: statePasword.password,
       inputValidation2: statePasword.inputValidation2

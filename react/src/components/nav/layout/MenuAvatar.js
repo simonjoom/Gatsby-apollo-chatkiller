@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { navigate } from "gatsby"; 
+import { navigate } from "gatsby";
 import { AUTH_TOKEN } from "../../../constants/constants";
 
 import Dropdown from "../../../reactLIB/Dropdown";
@@ -26,8 +26,8 @@ class MenuAvatar extends Component {
     return (
       <Dropdown
         trigger={
-          <div className="btn btn-large"> 
-              <img src="/static/assets/starter-logo-1024.png" /> 
+          <div className="btn btn-large">
+              <img src="/assets/starter-logo-1024.png" />
           </div>
         }
       >

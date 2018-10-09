@@ -30,7 +30,7 @@
     "gatsby-link": "^2.0.2",
     "gatsby-plugin-create-client-paths": "^2.0.0",
     "gatsby-plugin-sass": "^2.0.1",
-    "gatsby-source-filesystem": "^2.0.1",
+    "gatsby-source-filesystem": "^2.0.3",
     "graphql": "0.13.2",
     "graphql-tag": "2.9.2",
     "moment-timezone": "0.5.21",

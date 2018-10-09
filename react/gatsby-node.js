@@ -91,13 +91,13 @@ exports.onCreatePage = ({ page, actions }) => {
     let newPage9 = Object.assign({}, newPage, { matchPath: `/z/user/:id` });
     createPage(newPage9);
     let newPage10 = Object.assign({}, newPage, {
-      matchPath: `/forgetPassword`
+      matchPath: `/z/forgetPassword`
     });
     createPage(newPage10);
     let newPage11 = Object.assign({}, newPage, { matchPath: `/z/resetPassword` });
     createPage(newPage11);
     let newPage12 = Object.assign({}, newPage, {
-      matchPath: `/updatePassword`
+      matchPath: `/z/updatePassword`
     });
     createPage(newPage12);
     let newPage13 = Object.assign({}, newPage, { matchPath: `/z/validateEmail` });
