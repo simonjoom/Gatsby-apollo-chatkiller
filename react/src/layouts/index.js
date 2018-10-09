@@ -5,8 +5,8 @@ import gql from "graphql-tag";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Loading from "../components/error/Loading";
 import NotAuth from "../components/error/NotAuth";
-import "../index.css";
 import "./index.scss";
+import "../index.css";
 /*import {
   BrowserRouter as Router,
   Route,
@@ -92,7 +92,6 @@ class App extends Component {
         }}
       >
         <div>
-          <SideBar />
           <div
             style={{
               width: 600,
@@ -104,6 +103,10 @@ class App extends Component {
             <ul className="collapsible popout">
               <li>
                 <div className="collapsible-body">
+                <div className="md-grid">
+
+          <SideBar />
+                  <div className="md-cell md-cell--10">
                   {Me.loading && <Loading />}
                   {!global.isSSR || (Me.error && <NotAuth />)}
                   <Header location={propstoshare.location} />
@@ -132,6 +135,8 @@ class App extends Component {
                     <Page path="/z/validateEmail" />
                     <Page path="/" default/>
                   </FadeTransitionRouter>
+                </div>
+                </div>
                 </div>
                 <div className="collapsible-header">
                   <i className="material-icons">whatshot</i>
