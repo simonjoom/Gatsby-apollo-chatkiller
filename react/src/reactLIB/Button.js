@@ -4,8 +4,6 @@ import constants from './constants';
 import cx from 'classnames';
 import Icon from './Icon';
 import idgen from './idgen';
-import './index.css'
-
 
 class Button extends Component {
   constructor(props) {
@@ -19,6 +17,9 @@ class Button extends Component {
   componentDidMount() {
     const { tooltipOptions } = this.props;
     var elems = document.querySelectorAll('.tooltipped');
+    typeof M !== 'undefined' &&
+      this.tooltip &&
+      M.Tooltip.init(elems, tooltipOptions);
   }
 
   render() {
@@ -122,7 +123,7 @@ Button.propTypes = {
    */
   icon: PropTypes.string,
   modal: PropTypes.oneOf(['close', 'confirm']),
-  node: PropTypes.node,
+  node: PropTypes.any,
   /**
    * Will be disabled when fab is set.
    */

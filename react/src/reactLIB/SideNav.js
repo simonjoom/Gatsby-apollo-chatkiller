@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import idgen from './idgen';
-import './index.css'
-
 
 class SideNav extends Component {
   constructor(props) {
@@ -15,7 +13,7 @@ class SideNav extends Component {
   componentDidMount() {
     const { options } = this.props;
     var elems = document.querySelectorAll('.sidenav');
-    M.Sidenav.init(elems, options);
+    if (typeof M !== 'undefined') M.Sidenav.init(elems, options);
   }
 
   render() {

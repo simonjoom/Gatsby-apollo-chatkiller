@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import './index.css'
-
 
 import idgen from './idgen';
 import Button from './Button';

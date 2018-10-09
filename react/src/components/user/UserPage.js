@@ -2,15 +2,15 @@ import React from "react";
 import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
 import { navigate } from "gatsby";
-import Post from "../../components/post/Post";
+import Post from "../post/Post";
 import NotAuth from "../error/NotAuth";
 import { getIdfromRegexPath } from "../../utils";
 import { AUTH_TOKEN } from "../../constants/constants";
-import Icon from "@material-ui/core/Icon";
-import Paper from "@material-ui/core/Paper";
-import NotFound from "../error/NotFound";
-import Tooltip from "@material-ui/core/Tooltip";
-import UploadFile from "../nav/UploadFile";
+import Card from "../../reactLIB/Card";
+import Button from "../../reactLIB/Button";
+//import Icon from "@material-ui/core/Icon";
+import NotFound from "../error/NotFound"; 
+//import UploadFile from "../nav/UploadFile";
 import { withApollo } from "react-apollo";
 import Loading from "../error/Loading";
 import UserPageForm from "./UserPageForm";
@@ -22,10 +22,8 @@ class UserPage extends React.Component {
   };
 
   isUserMyself = () => {
-    if (!global.isSSR) {
-      const userToken = JSON.parse(localStorage.getItem("userToken"));
-      return userToken.id === this.props.userQuery.user.id;
-    }
+    const userToken = JSON.parse(localStorage.getItem("userToken"));
+    return userToken.id === this.props.userQuery.user.id;
   };
 
   updateUserData(user) {
@@ -47,28 +45,34 @@ class UserPage extends React.Component {
       return <Loading />;
     }
 
-    const authToken = global.isSSR || localStorage.getItem(AUTH_TOKEN);
+    const authToken = localStorage.getItem(AUTH_TOKEN);
 
     return (
       <div className="paperOut">
-        <Paper className="paperIn">
+        <Card className="paperIn">
           <div className="flex justify-between items-center">
             <h1 className="f3 black-80 fw4 lh-solid">
               {this.props.userQuery.user.name}{" "}
-              <Icon
+              <Button
                 onClick={() =>
                   this.setState({ isEditMode: !this.state.isEditMode })
                 }
+                tooltip="Edit mode"
+                icon="border_color"
+                type="material"
               >
-                border_color
-              </Icon>
+                set mode
+              </Button>
             </h1>
             {this.isUserMyself() && (
-              <Tooltip title="Change your password">
-                <Icon onClick={() => navigate("/updatePassword")}>
-                  security
-                </Icon>
-              </Tooltip>
+              <Button
+                onClick={() => navigate("/z/updatePassword")}
+                tooltip="Change your password"
+                icon="security"
+                type="material"
+              >
+                security
+              </Button>
             )}
           </div>
 
@@ -84,10 +88,10 @@ class UserPage extends React.Component {
               <p className="black-80 fw3">
                 Role: {this.props.userQuery.user.role}
               </p>
-              <UploadFile
+              {/*<UploadFile
                 isEditMode={false}
                 nameFile={this.props.userQuery.user.nameFile}
-              />
+              />*/}
             </div>
           )}
           <div>
@@ -120,7 +124,7 @@ class UserPage extends React.Component {
             </div>
           )}
           {this.props.children}
-        </Paper>
+        </Card>
       </div>
     );
   }
@@ -141,7 +145,7 @@ class UserPage extends React.Component {
       variables: { id }
     });
     this.props.client.resetStore().then(() => {
-      navigate("/users");
+      navigate("/z/users");
     });
   };
 }

@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import idgen from './idgen';
 import constants from './constants';
-import './index.css'
-
 
 class TextInput extends Component {
   constructor(props) {

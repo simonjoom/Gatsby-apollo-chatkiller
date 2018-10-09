@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Icon from './Icon';
 import PaginationButton from './PaginationButton';
-import './index.css'
-
 
 class Pagination extends Component {
   constructor(props) {

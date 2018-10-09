@@ -1,126 +1,144 @@
-import React, { Component } from 'react'
-import Button from '@material-ui/core/Button'
-import Input from '@material-ui/core/Input'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import Icon from '@material-ui/core/Icon'
-import InputLabel from '@material-ui/core/InputLabel'
-import FormControl from '@material-ui/core/FormControl'
-import FormHelperText from '@material-ui/core/FormHelperText'
+import React, { Component } from "react";
+import Input from "../../../reactLIB/Input";
+import Button from "../../../reactLIB/Button";
 
 export default class Password extends Component {
   state = {
-    inputValidation2: true,
+    inputValidation2: false,
     isPasswordLongEnough: true,
     hasLowerCase: true,
     hasUpperCase: true,
-   // hasNumber: true,
-   // hasSpecialChar: true,
-    password: '',
+    showPassword: false,
+    // hasNumber: true,
+    // hasSpecialChar: true,
+    password: "",
     passwordMinimumLength: 8
-  }
+  };
+
   UNSAFE_componentWillReceiveProps() {
-    this.input2.focus()
+    if (!this.state.inputValidation2) this.inputRef.focus();
   }
-  onChange2(e){
-    let inputValidation2 = false
-    if(
+  onChange(e) {
+    let inputValidation2 = false;
+    if (
       this.isPasswordLongEnough(e.target.value) &&
       this.hasLowerCase(e.target.value) &&
       this.hasUpperCase(e.target.value)
-    //  this.hasNumber(e.target.value) &&
-    //  this.hasSpecialChar(e.target.value)
+      //  this.hasNumber(e.target.value) &&
+      //  this.hasSpecialChar(e.target.value)
     ) {
-      inputValidation2 = true
+      inputValidation2 = true;
     }
 
-    this.setState({
-      password: e.target.value,
-      inputValidation2:inputValidation2,
-    //  hasNumber: this.hasNumber(e.target.value),
-    //  hasSpecialChar: this.hasSpecialChar(e.target.value),
-      hasUpperCase: this.hasUpperCase(e.target.value),
-      hasLowerCase: this.hasLowerCase(e.target.value),
-      isPasswordLongEnough: this.isPasswordLongEnough(e.target.value)
-    }, () => {
-      this.props.onChange2(this.state)
-    })
+    this.setState(
+      {
+        password: e.target.value,
+        inputValidation2: inputValidation2,
+        //  hasNumber: this.hasNumber(e.target.value),
+        //  hasSpecialChar: this.hasSpecialChar(e.target.value),
+        hasUpperCase: this.hasUpperCase(e.target.value),
+        hasLowerCase: this.hasLowerCase(e.target.value),
+        isPasswordLongEnough: this.isPasswordLongEnough(e.target.value)
+      },
+      () => {
+        this.props.onChange(this.state);
+      }
+    );
   }
 
   hasLowerCase(str) {
-     return str.toUpperCase() !== str
+    return str.toUpperCase() !== str;
   }
   hasUpperCase(str) {
-     return str.toLowerCase() !== str
+    return str.toLowerCase() !== str;
   }
   hasNumber(string) {
-    return /\d/.test(string)
+    return /\d/.test(string);
   }
 
   hasSpecialChar(str) {
-    var format = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/
-    if(format.test(str)){
-      return true
+    var format = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/;
+    if (format.test(str)) {
+      return true;
     } else {
-      return false
+      return false;
     }
   }
 
   isPasswordLongEnough(password) {
-    if(password.length > this.state.passwordMinimumLength) {
-      this.setState({isPasswordLongEnough: true})
-      return true
+    if (password.length > this.state.passwordMinimumLength) {
+      this.setState({ isPasswordLongEnough: true });
+      return true;
     }
-    this.setState({isPasswordLongEnough: false})
-    return false
+    this.setState({ isPasswordLongEnough: false });
+    return false;
   }
 
   handleNext = () => {
-    this.props.handleNext()
+    this.props.handleNext();
   };
 
-  handleKey = (data) => {
-    if(data.charCode === 13) { //keyPress enter
-      this.handleNext()
+  handleKey = data => {
+    if (data.charCode === 13) {
+      //keyPress enter
+      this.handleNext();
     }
+  };
+  showPassword() {
+    this.setState({ showPassword: !this.state.showPassword });
   }
-
   render() {
+    const ButtonStart = () => (
+      <Button
+        onClick={() => this.showPassword()}
+        type="material"
+        icon={this.state.showPassword ? "visibility_off" : "visibility"}
+        flat
+      />
+    );
+    const { placeholder, id, label } = this.props;
+    const ButtonNext = this.props.ButtonNext
+      ? this.props.ButtonNext
+      : () => <div />;
+    const errormessage = !this.state.isPasswordLongEnough
+      ? "At least " + this.state.passwordMinimumLength + " characters long."
+      : !this.state.hasLowerCase
+        ? "At least a lower case letter."
+        : !this.state.hasUpperCase
+          ? "At least an upper case letter."
+          : "";
     return (
-
-      <FormControl className={'wrapperAnimate ' + (this.props.activeStep ? 'focusField' : 'notFocusField')}>
-        <InputLabel htmlFor='password'>Choose a safe password</InputLabel>
+      <div className="wrapperAnimate focusField">
         <Input
-          id='password'
-          value={this.props.password}
-          error={!this.state.inputValidation2}
-          onChange={this.onChange2.bind(this)}
-          type='password'
-          inputRef={node => this.input2 = node}
+          id={id}
+          value={this.state.password}
+          label={label}
+          placeholder={placeholder}
+          errormessage={errormessage}
+          success={this.state.inputValidation2}
+          onChange={this.onChange.bind(this)}
+          type={this.state.showPassword ? "text" : "password"}
+          setRef={ref => {
+            this.inputRef = ref;
+            this.props.setRef && this.props.setRef(ref);
+          }}
           onKeyPress={this.handleKey}
-          endAdornment={
-            <InputAdornment position='end'>
-              {this.props.activeStep && (
-                <Button onClick={this.handleNext} variant='fab' color='primary' mini>
-                  <Icon>done</Icon>
-                </Button>
-              )}
-            </InputAdornment>
-          }
+          inline
+          buttonIcon={<ButtonNext icon={this.props.nextIcon} />}
+          buttonIconStart={<ButtonStart />}
+          s={12}
         />
-      {!this.state.isPasswordLongEnough && (
-        <FormHelperText>At least {this.state.passwordMinimumLength} characters long.</FormHelperText>
-      )}
-      {!this.state.hasLowerCase && (
-        <FormHelperText>At least a lower case letter.</FormHelperText>
-      )}
-      {!this.state.hasUpperCase && (
-        <FormHelperText>At least an upper case letter.</FormHelperText>
-      )}
-      </FormControl>
-
-    )
+      </div>
+    );
   }
 }
+
+Password.defaultProps = {
+  id: "password",
+  label: "Password",
+  placeholder: "Choose a safe password"
+};
+
 /*
     
       {!this.state.hasNumber && (

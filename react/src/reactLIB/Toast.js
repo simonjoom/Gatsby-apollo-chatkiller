@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import './index.css'
-
 
 import Button from './Button';
 
 const Toast = props => {
   const { children, className, options = {} } = props;
 
-  const showToast = () => M.toast(options);
+  const showToast = () => typeof M !== 'undefined' &&M.toast(options);
 
   return (
     <Button onClick={showToast} className={cx('toast', className)}>

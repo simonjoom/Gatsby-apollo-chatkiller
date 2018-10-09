@@ -1,5 +1,92 @@
 @import 'https://fonts.googleapis.com/css?family=Open+Sans:300, 400';
 
+.cardchat.card-content {
+  padding: 4px;
+  border-radius: 0 0 2px 2px;
+}
+.cardchat.card-panel {
+  padding: 4px;
+}
+.cardchat .card{
+  margin:0;
+}
+.bar2Buffer {
+  transition: transform 0.4s linear;
+}
+.barcolorPrimary {
+  background-color: rgba(108, 212, 170, 0.4);
+}
+.barColorSecondary {
+  background-color: rgb(201, 206, 234);
+}
+.bar {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  transition: transform 0.2s linear;
+  transform-origin: left;
+}
+
+.dashed {
+  position: absolute;
+  margin-top: 0;
+  height: 100%;
+  width: 100%;
+  animation: buffer 3s infinite linear;
+}
+.notFocusField {
+  width: 40%;
+  opacity: 0.5;
+}
+
+/* Styles applied to the additional bar element if `variant="buffer"` & `color="primary"`. */
+.dashedColorPrimary {
+  background-image: radial-gradient(
+    rgb(201, 206, 234) 0%,
+    rgb(201, 206, 234) 16%,
+    transparent 42%
+  );
+  background-size: 10px 10px;
+  background-position: 0px -23px;
+}
+/* Styles applied to the additional bar element if `variant="buffer"` & `color="secondary"`.
+`radial-gradient(${lighten(theme.palette.secondary.light; 0.4)} 0%; ${lighten(
+    theme.palette.secondary.light;
+    0.6;
+  )} 16%; transparent 42%)`;
+   */
+.dashedColorSecondary {
+  background-image: radial-gradient(
+    rgb(201, 206, 234) 0%,
+    rgb(201, 206, 234) 16%,
+    transparent 42%
+  );
+  background-size: 10px 10px;
+  background-position: 0px -23px;
+}
+
+.headerchat {
+  background-color: $md-primary-color;
+  margin: 0;
+}
+.page {
+  font-style: italic;
+  font-family: Times;
+}
+.paperOut {
+  margin: 10px;
+}
+.containerchat {
+  background: rgb(246, 246, 246);
+  width: 600px;
+  position: fixed;
+  z-index: 1111;
+  right: 0;
+  bottom: 0;
+}
+
 .transition-group {
   flex: 1;
   position: relative;
@@ -13,9 +100,9 @@
   right: 0;
 }
 
-.page { 
+.page {
   font-style: italic;
-  font-family: Times; 
+  font-family: Times;
 }
 
 .fade-enter .page {
@@ -156,7 +243,7 @@ input {
   margin: 10px;
 
 }
- 
+
 
 
 /* signup */

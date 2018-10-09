@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Col from './Col';
 import Icon from './Icon';
-import './index.css'
-
 
 class Navbar extends Component {
   constructor(props) {

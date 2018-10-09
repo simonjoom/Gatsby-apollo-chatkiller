@@ -15,7 +15,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
-
 (function(){
 'use strict';var e=document,g=window,h=Array.prototype,l=h.filter,aa=h.indexOf,ba=h.map,m=h.push,n=h.reverse,q=h.slice,ca=/^#[\w-]*$/,da=/^\.[\w-]*$/,ea=/<.+>/,fa=/^\w+$/;function r(a,b){void 0===b&&(b=e);return da.test(a)?b.getElementsByClassName(a.slice(1)):fa.test(a)?b.getElementsByTagName(a):b.querySelectorAll(a)}
 function t(a,b){void 0===b&&(b=e);if(a){if(a.__cash)return a;var c=a;if(u(a)){if(b.__cash&&(b=b[0]),c=ca.test(a)?b.getElementById(a.slice(1)):ea.test(a)?v(a):r(a,b),!c)return}else if(w(a))return this.ready(a);if(c.nodeType||c===g)c=[c];this.length=c.length;a=0;for(b=this.length;a<b;a++)this[a]=c[a]}}function x(a,b){return new t(a,b)}var y=x.fn=x.prototype=t.prototype={constructor:x,__cash:!0,length:0,splice:h.splice};y.get=function(a){return void 0===a?q.call(this):this[0>a?a+this.length:a]};
@@ -39,9 +38,9 @@ y.on=function(a,b,c,d){var f=this;if(!u(a)){for(var k in a)this.on(k,b,a[k]);ret
 y.one=function(a,b,c){return this.on(a,b,c,!0)};y.ready=function(a){function b(){return a(x)}"loading"!==e.readyState?setTimeout(b):e.addEventListener("DOMContentLoaded",b);return this};y.trigger=function(a,b){var c=a;if(u(a)){var d=U(a);a=d[0];d=d[1];c=e.createEvent("HTMLEvents");c.initEvent(a,!0,!0);c.namespace=d.join(".")}c.data=b;return this.each(function(a,b){b.dispatchEvent(c)})};
 function ra(a){var b=[];A(a.options,function(a){!a.selected||a.disabled||a.parentNode.disabled||b.push(a.value)});return b}var sa=/select-one/i,W=/select-multiple/i;function X(a){var b=a.type;return sa.test(b)?0>a.selectedIndex?null:a.options[a.selectedIndex].value:W.test(b)?ra(a):a.value}var ta=/%20/g,ua=/file|reset|submit|button|image/i,va=/radio|checkbox/i;
 y.serialize=function(){var a="";this.each(function(b,c){A(c.elements||[c],function(b){if(!b.disabled&&b.name&&"FIELDSET"!==b.tagName&&!ua.test(b.type)&&(!va.test(b.type)||b.checked)){var c=X(b);void 0!==c&&(c=E(c)?c:[c],A(c,function(c){var d=a;c="&"+encodeURIComponent(b.name)+"="+encodeURIComponent(c).replace(ta,"+");a=d+c}))}})});return a.substr(1)};
-y.val=function(a){return void 0===a?this[0]&&X(this[0]):this.each(function(b,c){W.test(c.type)&&E(a)?A(c.options,function(b){b.selected=0<=a.indexOf(b.value)}):c.value=a})};y.clone=function(){return this.map(function(a,b){return b.cloneNode(!0)})};y.detach=function(){return this.each(function(a,b){b.parentNode&&b.parentNode.removeChild(b)})};
+y.val=function(a){return void 0===a?this[0]&&X(this[0]):this.each(function(b,c){W.test(c.type)&&E(a)?A(c.options,function(b){b.selected=0<=a.indexOf(b.value)}):c.value=a})};y.clone=function(){return this.map(function(a,b){return b.cloneNode(!0)})};y.detach=function(){return this.each(function(a,b){b.parentNode&&b.parentNode.removeChild(b)})};y.empty=function(){var a=this[0];if(a)for(;a.firstChild;)a.removeChild(a.firstChild);return this};
 function Y(a,b,c){var d=u(b);!d&&b.length?A(b,function(b){return Y(a,b,c)}):A(a,d?function(a){a.insertAdjacentHTML(c?"afterbegin":"beforeend",b)}:function(a,d){d=d?b.cloneNode(!0):b;c?a.insertBefore(d,a.childNodes[0]):a.appendChild(d)})}y.append=function(){var a=this;A(arguments,function(b){Y(a,b)});return this};y.appendTo=function(a){Y(x(a),this);return this};
-y.html=function(a){if(void 0===a)return this[0]&&this[0].innerHTML;var b=a.nodeType?a[0].outerHTML:a;return this.each(function(a,d){d.innerHTML=b})};y.empty=function(){return this.html("")};y.insertAfter=function(a){var b=this;x(a).each(function(a,d){var c=d.parentNode;b.each(function(b,f){c.insertBefore(a?f.cloneNode(!0):f,d.nextSibling)})});return this};y.after=function(){var a=this;A(n.apply(arguments),function(b){n.apply(x(b).slice()).insertAfter(a)});return this};
+y.html=function(a){if(void 0===a)return this[0]&&this[0].innerHTML;var b=a.nodeType?a[0].outerHTML:a;return this.each(function(a,d){d.innerHTML=b})};y.insertAfter=function(a){var b=this;x(a).each(function(a,d){var c=d.parentNode;b.each(function(b,f){c.insertBefore(a?f.cloneNode(!0):f,d.nextSibling)})});return this};y.after=function(){var a=this;A(n.apply(arguments),function(b){n.apply(x(b).slice()).insertAfter(a)});return this};
 y.insertBefore=function(a){var b=this;x(a).each(function(a,d){var c=d.parentNode;b.each(function(b,f){c.insertBefore(a?f.cloneNode(!0):f,d)})});return this};y.before=function(){var a=this;A(arguments,function(b){x(b).insertBefore(a)});return this};y.prepend=function(){var a=this;A(arguments,function(b){Y(a,b,!0)});return this};y.prependTo=function(a){Y(x(a),n.apply(this.slice()),!0);return this};y.remove=function(){return this.detach().off()};
 y.replaceWith=function(a){var b=this;return this.each(function(c,d){var f=d.parentNode;if(f){c=c?x(a).clone():x(a);if(!c[0])return b.remove(),!1;f.replaceChild(c[0],d);x(c[0]).after(c.slice(1))}})};y.replaceAll=function(a){x(a).replaceWith(this);return this};y.text=function(a){return void 0===a?this[0]?this[0].textContent:"":this.each(function(b,c){c.textContent=a})};var Z=e.documentElement;
 y.offset=function(){var a=this[0];if(a)return a=a.getBoundingClientRect(),{top:a.top+g.pageYOffset-Z.clientTop,left:a.left+g.pageXOffset-Z.clientLeft}};y.offsetParent=function(){return x(this[0]&&this[0].offsetParent)};y.position=function(){var a=this[0];if(a)return{left:a.offsetLeft,top:a.offsetTop}};y.children=function(a){var b=[];this.each(function(a,d){m.apply(b,d.children)});b=x(J(b));return a?b.filter(function(b,d){return C(d,a)}):b};
@@ -5867,9 +5866,10 @@ $jscomp.polyfill = function (e, r, p, m) {
   // Function to update labels of text fields
   M.updateTextFields = function () {
     var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea';
+    console.log("test",$(input_selector))
     $(input_selector).each(function (index,element) {
-      var $this = $(this);
-      if (element.value.length > 0 || $(element).is(':focus') || element.autofocus || $this.attr('placeholder') !== null) {
+      var $this = $(this); 
+      if (element.value.length > 0 || $(element).is(':focus') || element.autofocus || !!$this.attr('placeholder')) {
         $this.siblings('label').addClass('active');
       } else if (element.validity) {
         $this.siblings('label').toggleClass('active', element.validity.badInput === true);
@@ -5880,19 +5880,20 @@ $jscomp.polyfill = function (e, r, p, m) {
   };
 
   M.validate_field = function (object) {
-    var hasLength = object.attr('data-length') !== null;
+    var hasLength = !!object.attr('data-length');
     var lenAttr = parseInt(object.attr('data-length'));
     var len = object[0].value.length;
 
     if (len === 0 && object[0].validity.badInput === false && !object.is(':required')) {
-      if (object.hasClass('validate')) {
+      if (object.hasClass('validate')) { 
         object.removeClass('valid');
         object.removeClass('invalid');
       }
     } else {
       if (object.hasClass('validate')) {
+      var valid=!object.hasClass('invalid')&&object.is(':valid')
         // Check for character counter attributes
-        if (object.is(':valid') && hasLength && len <= lenAttr || object.is(':valid') && !hasLength) {
+        if (valid && hasLength && len <= lenAttr || valid && !hasLength) { 
           object.removeClass('invalid');
           object.addClass('valid');
         } else {
@@ -5992,32 +5993,33 @@ $jscomp.polyfill = function (e, r, p, m) {
     }
     $textarea.data('previous-length', $textarea[0].value.length);
   };
-
-  $(document).ready(function () {
+ 
+  //$(document).ready(function () {
+  M.startTextFields = function () {
     // Text based inputs
     var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea';
 
     // Add active if form auto complete
     $(document).on('change', input_selector, function () {
-      if (this.value.length !== 0 || $(this).attr('placeholder') !== null) {
+      if (this.value.length !== 0 || !!$(this).attr('placeholder')) {
         $(this).siblings('label').addClass('active');
       }
       M.validate_field($(this));
     });
 
     // Add active if input element has been pre-populated on document ready
-    $(document).ready(function () {
+   // $(document).ready(function () {
       M.updateTextFields();
-    });
+   // });
 
     // HTML DOM FORM RESET handling
     $(document).on('reset', function (e) {
-      var formReset = $(e.target);
+      var formReset = $(e.target); 
       if (formReset.is('form')) {
         formReset.find(input_selector).removeClass('valid').removeClass('invalid');
         formReset.find(input_selector).each(function (i,e) {
           if (this.value.length) {
-            $(this).siblings('label').removeClass('active');
+           $(this).siblings('label').removeClass('active');
           }
         });
 
@@ -6055,7 +6057,7 @@ $jscomp.polyfill = function (e, r, p, m) {
         if ($inputElement[0].value.length === 0 && $inputElement[0].validity.badInput !== true && $inputElement.attr('placeholder') === null) {
           selector += ', label';
         }
-        $inputElement.siblings(selector).removeClass('active');
+      //  $inputElement.siblings(selector).removeClass('active');
         M.validate_field($inputElement);
       }
     }, true);
@@ -6105,7 +6107,8 @@ $jscomp.polyfill = function (e, r, p, m) {
       path_input[0].value = file_names.join(', ');
       path_input.trigger('change');
     });
-  }); // End of $(document).ready
+    }
+ // }); // End of $(document).ready
 })(cash);
 ;(function ($, anim) {
   'use strict';
@@ -7092,7 +7095,7 @@ $jscomp.polyfill = function (e, r, p, m) {
   M.Chips = Chips;
 
 
-  $(document).ready(function () {
+ // $(document).ready(function () {
     // Handle removal of static chips.
     $(document.body).on('click', '.chip .close', function () {
       var $chips = $(this).closest('.chips');
@@ -7101,7 +7104,7 @@ $jscomp.polyfill = function (e, r, p, m) {
       }
       $(this).closest('.chip').remove();
     });
-  });
+ // });
 })(cash);
 ;(function ($) {
   'use strict';

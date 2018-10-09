@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
-import Row from './Row';
-import Col from './Col';
-import './index.css'
-
+import cx from 'classnames'; 
 
 class Footer extends Component {
   render() {
@@ -22,16 +18,14 @@ class Footer extends Component {
     };
 
     return (
-      <footer className={cx(classes, className)} {...props}>
-        <div className="container">
-          <Row>
-            <Col l={6} s={12}>
+      <footer className={cx(classes,"md-grid", className)} {...props}>
+        <div className="md-grid">
+          <div className="md-cell md-cell--6-phone md-cell--6 post md-cell--8-tablet">
               {children}
-            </Col>
-            <Col l={4} s={12} offset="l2">
-              {links}
-            </Col>
-          </Row>
+          </div>
+          <div className="md-cell md-cell--2-desktop-offset md-cell--6-tablet-offset md-cell--4-phone md-cell--4 post md-cell--4-tablet">
+              {links} 
+          </div>
         </div>
         <div className="footer-copyright">
           <div className="container">

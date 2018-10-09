@@ -1,47 +1,65 @@
-import React from 'react'
-import {graphql} from 'react-apollo'
-import gql from 'graphql-tag'
-import NotAuth from '../error/NotAuth'
-import Icon from '@material-ui/core/Icon'
-import Loading from '../error/Loading'
+import React from "react";
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
+import NotAuth from "../error/NotAuth";
+import Icon from "../../reactLIB/Icon";
+import Loading from "../error/Loading";
 
 class UsersPageList extends React.Component {
   state = {
-    query: '',
-    orderBy: 'name_ASC'
-  }
+    query: "",
+    orderBy: "name_ASC"
+  };
 
   render() {
     if (this.props.usersQueryConnection.error) {
-      return (<NotAuth/>)
+      return <NotAuth />;
     }
     if (this.props.usersQueryConnection.loading) {
-      return (<Loading />)
+      return <Loading />;
     }
-    const {edges} = this.props.usersQueryConnection.usersConnection
+    const { edges } = this.props.usersQueryConnection.usersConnection;
     return (
-      <React.Fragment>
-
-      {
-        edges && edges.map((user) => (
-          <div className='cursor' key={user.node.id} onClick={()=>this.props.elemClicked(user.node)}>
-            <h3 className='black'>
-              <Icon>fingerprint</Icon>{user.node.name}
-            </h3>
-            Email: {user.node.email}
-            <br/>
-            Role: {user.node.role}
-          </div>
-      ))
-      }
-      {this.props.children}
-    </React.Fragment>)
+      <>
+        {edges &&
+          edges.map(user => (
+            <div
+              className="cursor"
+              key={user.node.id}
+              onClick={() => this.props.elemClicked(user.node)}
+            >
+              <h3 className="black">
+                <Icon
+                  type="material"
+                  className="fingerprint"
+                />
+                ;{user.node.name}
+              </h3>
+              Email: {user.node.email}
+              <br />
+              Role: {user.node.role}
+            </div>
+          ))}
+        {this.props.children}
+      </>
+    );
   }
 }
 
-const DRAFTS_QUERY = gql `
-  query UsersQueryConnection($after: String, $orderBy: UserOrderByInput, $where: UserWhereInput, $skip: Int) {
-    usersConnection(after: $after, orderBy: $orderBy, where: $where, first: 5, skip: $skip) {
+const DRAFTS_QUERY = gql`
+  query UsersQueryConnection(
+    $after: String
+    $orderBy: UserOrderByInput
+    $where: UserWhereInput
+    $skip: Int
+  ) {
+    usersConnection(
+      after: $after
+      orderBy: $orderBy
+      where: $where
+      first: 5
+      skip: $skip
+    ) {
       pageInfo {
         hasNextPage
         endCursor
@@ -59,11 +77,11 @@ const DRAFTS_QUERY = gql `
       }
     }
   }
-`
+`;
 
 export default graphql(DRAFTS_QUERY, {
-  name: 'usersQueryConnection', // name of the injected prop: this.props.feedQuery...
-  fetchPolicy: 'network-only',
+  name: "usersQueryConnection", // name of the injected prop: this.props.feedQuery...
+  fetchPolicy: "network-only",
   options: props => ({
     variables: {
       orderBy: props.orderBy,
@@ -72,5 +90,4 @@ export default graphql(DRAFTS_QUERY, {
       }
     }
   })
-
-})(UsersPageList)
+})(UsersPageList);

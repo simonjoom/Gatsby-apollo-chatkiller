@@ -25,12 +25,14 @@ class App extends Component {
     isMobile: false
   };
   componentDidMount() {
+    console.log("mountLayout")
     console.log("Materialize Ready?", global.M);
     var elems = document.querySelectorAll(".collapsible");
     this.instances = global.M.Collapsible.init(elems, {});
   }
 
   componentWillUnmount() {
+    console.log("unmountLayout")
     if (this.instance) {
       this.instance.destroy();
     }

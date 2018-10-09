@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import './index.css'
-
 
 class Slider extends Component {
   constructor(props) {
@@ -13,7 +11,7 @@ class Slider extends Component {
   }
 
   initSlider() {
-    this.instance = M.Slider.init(this._slider, this.props.options);
+    this.instance = typeof M !== 'undefined' &&M.Slider.init(this._slider, this.props.options);
   }
 
   /**

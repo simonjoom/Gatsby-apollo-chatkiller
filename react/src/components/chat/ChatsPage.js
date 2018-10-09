@@ -14,7 +14,7 @@ class ChatsPage extends Component {
     this.setState({ openChat: props.openChat });
   }*/
   render() {
-    const authToken = global.isSSR || localStorage.getItem(AUTH_TOKEN); 
+    const authToken = localStorage.getItem(AUTH_TOKEN); 
     if (!authToken) {
       return <NotAuth />;
     }

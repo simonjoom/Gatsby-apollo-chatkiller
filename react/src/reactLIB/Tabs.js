@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import idgen from './idgen';
 import cx from 'classnames';
-import './index.css'
-
 
 import Row from './Row';
 import Col from './Col';

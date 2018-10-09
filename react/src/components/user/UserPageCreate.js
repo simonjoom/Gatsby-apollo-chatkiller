@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
 import NotAuth from '../error/NotAuth'
-import Paper from '@material-ui/core/Paper'
+import Card from "../../reactLIB/Card"; 
 import { withApollo } from 'react-apollo'
 import UserPageForm from './UserPageForm'
 import { AUTH_TOKEN } from '../../constants/constants'
@@ -30,10 +30,9 @@ class UserPageCreate extends React.Component {
       return (<NotAuth/>)
     }
 
-    return (
-      <React.Fragment>
+    return ( 
         <div className='paperOut'>
-          <Paper className='paperIn'>
+          <Card className='paperIn'>
             <div className='flex justify-between items-center'>
               <h1 className='f3 black-80 fw4 lh-solid'>
                 { this.state.user.name}
@@ -55,9 +54,8 @@ class UserPageCreate extends React.Component {
 
                 </div>
 
-          </Paper>
-        </div>
-      </React.Fragment>
+          </Card>
+        </div> 
     )
   }
 

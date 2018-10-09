@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './index.css'
-
+import LogoSkiscool from "../components/logo";
 
 export const UserShape = {
   background: PropTypes.string,
@@ -15,11 +14,7 @@ export class UserView extends Component {
     const { background, image, name, email } = this.props;
     return (
       <div className="user-view">
-        {background && (
-          <div className="background">
-            <img src={background} />
-          </div>
-        )}
+        <LogoSkiscool/>
         {image && (
           <a href="#!user">
             <img className="circle" src={image} />

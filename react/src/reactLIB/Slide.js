@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import constants from './constants';
-import './index.css'
-
 
 class Slide extends Component {
   constructor(props) {

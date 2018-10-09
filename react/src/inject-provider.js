@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom"
 const preferDefault = m => (m && m.default) || m;
 let Layout;
-import "tachyons";
 //import { createStore, combineReducers } from "redux";
 
 import { AUTH_TOKEN } from "./constants/constants";

@@ -4,7 +4,6 @@ import cx from 'classnames';
 import idgen from './idgen';
 import constants from './constants';
 import Icon from './Icon';
-import './index.css'
 
 class Input extends Component {
   constructor(props) {
@@ -94,6 +93,8 @@ class Input extends Component {
       labelClassName,
       defaultValue,
       error,
+      errormessage,
+      successmessage,
       label,
       multiple,
       placeholder,
@@ -106,25 +107,39 @@ class Input extends Component {
       onLabel,
       offLabel,
       inline,
+      buttonIcon,
+      buttonIconStart,
+      size = 12,
+      style = { width: '100%' },
+      setRef,
       ...other
     } = this.props;
     let sizes = { s, m, l };
-    this._id = this._id || this.props.id || `input_M{idgen()}`;
+    this._id = this._id || this.props.id || `input${idgen()}`;
     let classes = {
-      col: true,
+      //  col: true,
+      ['md-cell md-cell--' + size]: true,
       inline: type !== 'checkbox' && type !== 'radio' && inline,
       'input-field': type !== 'checkbox' && type !== 'radio' && type !== 'file',
       'file-field': type === 'file'
     };
+
+    if (inline && style) style.width = '70%';
+
     constants.SIZES.forEach(size => {
       classes[size + sizes[size]] = sizes[size];
     });
+    const validation =
+      validate ||
+      typeof success !== 'undefined' ||
+      typeof error !== 'undefined';
     let inputClasses = {
-      validate,
-      invalid: error,
-      valid: success,
+      validate: validation,
+      invalid: validation && !!this.state.value && !success,
+      valid: validation && !!this.state.value && success,
       'browser-default': browserDefault && this.isSelect()
     };
+    console.log('valid', inputClasses);
     let C, inputType;
     switch (type) {
       case 'textarea':
@@ -149,17 +164,25 @@ class Input extends Component {
 
     let htmlLabel =
       label || inputType === 'radio' ? (
-        <label
-          className={cx(labelClasses, labelClassName)}
-          data-success={success}
-          data-error={error}
-          htmlFor={this._id}
-        >
-          {label}
-        </label>
+        <>
+          <label
+            className={cx(labelClasses, labelClassName)}
+            htmlFor={this._id}
+          >
+            {label}
+          </label>
+          {this.state.value &&
+            validation && (
+              <span
+                className="helper-text"
+                data-success={success ? successmessage : null}
+                data-error={!success ? errormessage : null}
+              />
+            )}
+        </>
       ) : null;
 
-    if (this.isSelect()) {
+    /* if (this.isSelect()) {
       let options =
         placeholder && !defaultValue
           ? [
@@ -180,6 +203,7 @@ class Input extends Component {
           {htmlLabel}
           <select
             {...other}
+            style={style}
             multiple={multiple}
             id={this._id}
             className={cx(className, inputClasses)}
@@ -199,6 +223,7 @@ class Input extends Component {
           {this.renderIcon()}
           <C
             {...other}
+            style={style}
             className={cx(className, inputClasses)}
             defaultValue={defaultValue}
             id={this._id}
@@ -218,6 +243,7 @@ class Input extends Component {
           {this.renderIcon()}
           <C
             {...other}
+            style={style}
             className={cx(className, inputClasses)}
             defaultValue={defaultValue}
             id={this._id}
@@ -232,7 +258,8 @@ class Input extends Component {
         <div className="switch">
           <label>
             {offLabel || 'Off'}
-            <input {...other} onChange={this._onChange} type="checkbox" />
+            <input {...other} 
+            style={style} onChange={this._onChange} type="checkbox" />
             <span className="lever" />
             {onLabel || 'On'}
           </label>
@@ -243,7 +270,8 @@ class Input extends Component {
         <div className={cx(classes)}>
           <div className="btn">
             <span>{label}</span>
-            <C type="file" multiple={multiple} {...other} />
+            <C type="file" multiple={multiple} 
+            style={style} {...other} />
           </div>
           <div className="file-path-wrapper">
             <C
@@ -256,18 +284,19 @@ class Input extends Component {
           </div>
         </div>
       );
-    } else {
-      let defaultValue =
-        inputType !== 'checkbox' && inputType !== 'radio'
-          ? this.state.value
-          : defaultValue;
-
+    } else {*/
+    let defaultVal =
+      inputType !== 'checkbox' && inputType !== 'radio'
+        ? this.state.value
+        : defaultValue;
+    /*
       if (inputType === 'checkbox' || inputType === 'radio') {
         return (
           <div className={cx(classes)}>
             {this.renderIcon()}
             <C
               {...other}
+              style={style}
               className={cx(className, inputClasses)}
               ref={ref => (this.input = ref)}
               id={this._id}
@@ -279,32 +308,44 @@ class Input extends Component {
             {htmlLabel}
           </div>
         );
-      }
+      }*/
 
-      return (
-        <div className={cx(classes)}>
-          {this.renderIcon()}
-          <C
-            {...other}
-            className={cx(className, inputClasses)}
-            ref={ref => (this.input = ref)}
-            defaultValue={defaultValue}
-            id={this._id}
-            onChange={this._onChange}
-            placeholder={placeholder}
-            type={inputType}
-          />
-          {htmlLabel}
-        </div>
-      );
-    }
+    return (
+      <div className={cx(classes)}>
+        {this.renderIcon()}
+        <C
+          {...other}
+          style={style}
+          className={cx(className, inputClasses)}
+          defaultValue={defaultVal}
+          id={this._id}
+          ref={setRef}
+          onChange={this._onChange}
+          placeholder={placeholder}
+          type={inputType}
+          required={this.props.required}
+        />
+        {inline && buttonIcon}
+        {htmlLabel}
+      </div>
+    );
+    // }
   }
+  /*
+          ref={ref => (this.input = ref)}*/
 
   renderIcon() {
-    const { icon, children } = this.props;
+    const { icon, children, type, buttonIconStart } = this.props;
     if (icon) {
-      return <Icon className="prefix">{icon}</Icon>;
-    } else {
+      return (
+        <div className="prefix">
+          <Icon type={type} className={icon} />
+        </div>
+      );
+    } else if (buttonIconStart) {
+      return <div className="prefix">{buttonIconStart}</div>;
+    }
+    /* } else {
       let icon = null;
       if (React.Children.count(children) === 1 && !Array.isArray(children)) {
         icon = React.Children.only(children);
@@ -312,7 +353,7 @@ class Input extends Component {
       return icon === null
         ? null
         : React.cloneElement(icon, { className: 'prefix' });
-    }
+    }*/
   }
 
   isSelect() {
@@ -334,11 +375,12 @@ Input.propTypes = {
   l: PropTypes.number,
   inline: PropTypes.bool,
   children: PropTypes.node,
+  buttonIcon: PropTypes.node,
   className: PropTypes.string,
   labelClassName: PropTypes.string,
   label: PropTypes.node,
   error: PropTypes.string,
-  success: PropTypes.string,
+  success: PropTypes.bool,
   /**
    * Input field type, e.g. select, checkbox, radio, text, tel, email, file
    * @default 'text'
@@ -363,6 +405,11 @@ Input.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
 };
 
-Input.defaultProps = { type: 'text', checked: false };
+Input.defaultProps = {
+  type: 'text',
+  checked: false,
+  errormessage: 'Fail validation',
+  successmessage: 'Good'
+};
 
 export default Input;

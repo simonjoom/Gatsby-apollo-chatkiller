@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import idgen from './idgen';
 import cx from 'classnames';
-import './index.css'
-
 
 const classes = {
   'dropdown-content': true
@@ -14,21 +12,23 @@ class Dropdown extends Component {
     super(props);
     this.idx = 'dropdown_' + idgen();
     this.instances = null;
-    this.elems =[]
+    this.elems = [];
     this.renderTrigger = this.renderTrigger.bind(this);
   }
 
   componentDidMount() {
     const { options } = this.props;
     this.elems = document.querySelectorAll('.dropdown-trigger');
+    if(typeof M !== 'undefined')
     this.instances = M.Dropdown.init(this.elems, options);
   }
 
   componentWillUnmount() {
-    M(this.elems).map((i,el) => {
-      var instance = M.Dropdown.getInstance(el);
-      instance.destroy();
-    });
+    if(typeof M !== 'undefined')
+    cash(this.elems).map((i, el) => {
+        var instance = M.Dropdown.getInstance(el);
+        instance.destroy();
+      });
   }
 
   render() {

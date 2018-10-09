@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import './index.css'
-
 
 import constants from './constants';
 
@@ -32,7 +30,7 @@ CardTitle.propTypes = {
   // the waves effect
   waves: PropTypes.oneOf(constants.WAVES),
   // The path to the image
-  image: PropTypes.string
+  image: PropTypes.string.isRequired
 };
 
 export default CardTitle;

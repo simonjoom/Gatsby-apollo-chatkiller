@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import constants from './constants';
 import cx from 'classnames';
-import './index.css'
-
 
 class Icon extends React.Component {
   static defaultProps = {

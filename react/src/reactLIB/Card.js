@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Icon from './Icon';
-import './index.css'
 
 class Card extends Component {
   constructor(props) {
@@ -67,11 +66,11 @@ class Card extends Component {
   }
   renderAll(title, titlereveal, reveal, textClassName, children, actions) {
     return (
-      <React.Fragment>
+      <>
         {this.renderContent(title, reveal, textClassName, children)}
         {this.renderReveal(titlereveal, reveal)}
         {actions && this.renderAction(actions)}
-      </React.Fragment>
+      </>
     );
   }
 
@@ -90,8 +89,7 @@ class Card extends Component {
       horizontal,
       waves,
       ...other
-    } = this.props;
-
+    } = this.props; 
     const classes = {
       card: true,
       horizontal: horizontal
