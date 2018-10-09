@@ -1,54 +1,45 @@
-import React, {Component} from 'react'
-import { navigate } from "gatsby"
-import Button from '@material-ui/core/Button'
-import ImageTemplate from '../ImageTemplate'
-import MenuItem from '@material-ui/core/MenuItem'
-import {AUTH_TOKEN} from '../../../constants/constants'
-import Menu from '@material-ui/core/Menu' 
+import React, { Component } from "react";
+import { navigate } from "gatsby"; 
+import { AUTH_TOKEN } from "../../../constants/constants";
+
+import Dropdown from "../../../reactLIB/Dropdown";
+import NavItem from "../../../reactLIB/NavItem";
 
 class MenuAvatar extends Component {
-  state = {
-    anchorEl: null
-  }
-
   handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget })
-  }
+    //   this.setState({ anchorEl: event.currentTarget });
+  };
 
-  handleClose = (page) => {
-    this.setState({ anchorEl: null })
-    if (page === 'profile') {
-      navigate('/user/' + this.props.user.id)
+  handleClose = page => {
+    // this.setState({ anchorEl: null });
+    if (page === "profile") {
+      navigate("/z/user/" + this.props.user.id);
     }
-    if (page === 'logout') {
-      localStorage.removeItem(AUTH_TOKEN)
-      navigate(`/login`)
+    if (page === "logout") {
+      localStorage.removeItem(AUTH_TOKEN);
+      navigate(`/z/login`);
     }
-    this.setState({open: false})
-  }
+    //  this.setState({ open: false });
+  };
 
   render() {
-    const { anchorEl } = this.state
-       return (
-         <div>
-           <Button
-             aria-owns={anchorEl ? 'simple-menu' : null}
-             aria-haspopup="true"
-             onClick={this.handleClick}>
-             <ImageTemplate format={'avatar'} nameFile={this.props.nameFile} />
-           </Button>
-           <Menu
-             id="simple-menu"
-             anchorEl={anchorEl}
-             open={Boolean(anchorEl)}
-             onClose={this.handleClose}
-           >
-            <MenuItem onClick={() => this.handleClose('profile')}>Profile</MenuItem>
-            <MenuItem onClick={() => this.handleClose('logout')}>Logout</MenuItem>
-           </Menu>
-         </div>
-       )
-    }
+    return (
+      <Dropdown
+        trigger={
+          <div className="btn btn-large"> 
+              <img src="/static/assets/starter-logo-1024.png" /> 
+          </div>
+        }
+      >
+        <NavItem key="Profile" onClick={() => this.handleClose("profile")}>
+          Profile
+        </NavItem>
+        <NavItem key="Logout" onClick={() => this.handleClose("logout")}>
+          Logout
+        </NavItem>
+      </Dropdown>
+    );
+  }
 }
 
-export default MenuAvatar
+export default MenuAvatar;
