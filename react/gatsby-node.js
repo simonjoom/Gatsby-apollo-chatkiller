@@ -72,43 +72,43 @@ exports.onCreatePage = ({ page, actions }) => {
   console.log(page.path);
   if (page.path == "/" && !page.matchPath) {
     let newPage = { component: page.component, path: "/" };
-    let newPage1 = Object.assign({}, newPage, { matchPath: `/create` });
+    let newPage1 = Object.assign({}, newPage, { matchPath: `/z/create` });
     createPage(newPage1);
-    let newPage2 = Object.assign({}, newPage, { matchPath: `/api` });
+    let newPage2 = Object.assign({}, newPage, { matchPath: `/z/api` });
     createPage(newPage2);
-    let newPage3 = Object.assign({}, newPage, { matchPath: `/post/:id` });
+    let newPage3 = Object.assign({}, newPage, { matchPath: `/z/post/:id` });
     createPage(newPage3);
-    let newPage4 = Object.assign({}, newPage, { matchPath: `/drafts` });
+    let newPage4 = Object.assign({}, newPage, { matchPath: `/z/drafts` });
     createPage(newPage4);
-    let newPage5 = Object.assign({}, newPage, { matchPath: `/chats` });
+    let newPage5 = Object.assign({}, newPage, { matchPath: `/z/chats` });
     createPage(newPage5);
-    let newPage6 = Object.assign({}, newPage, { matchPath: `/car/:id` });
+    let newPage6 = Object.assign({}, newPage, { matchPath: `/z/car/:id` });
     createPage(newPage6);
-    let newPage7 = Object.assign({}, newPage, { matchPath: `/cars` });
+    let newPage7 = Object.assign({}, newPage, { matchPath: `/z/cars` });
     createPage(newPage7);
-    let newPage8 = Object.assign({}, newPage, { matchPath: `/users` });
+    let newPage8 = Object.assign({}, newPage, { matchPath: `/z/users` });
     createPage(newPage8);
-    let newPage9 = Object.assign({}, newPage, { matchPath: `/user/:id` });
+    let newPage9 = Object.assign({}, newPage, { matchPath: `/z/user/:id` });
     createPage(newPage9);
     let newPage10 = Object.assign({}, newPage, {
       matchPath: `/forgetPassword`
     });
     createPage(newPage10);
-    let newPage11 = Object.assign({}, newPage, { matchPath: `/resetPassword` });
+    let newPage11 = Object.assign({}, newPage, { matchPath: `/z/resetPassword` });
     createPage(newPage11);
     let newPage12 = Object.assign({}, newPage, {
       matchPath: `/updatePassword`
     });
     createPage(newPage12);
-    let newPage13 = Object.assign({}, newPage, { matchPath: `/validateEmail` });
+    let newPage13 = Object.assign({}, newPage, { matchPath: `/z/validateEmail` });
     createPage(newPage13);
-    let newPage14 = Object.assign({}, newPage, { matchPath: `/signup` });
+    let newPage14 = Object.assign({}, newPage, { matchPath: `/z/signup` });
     createPage(newPage14);
-    let newPage15 = Object.assign({}, newPage, { matchPath: `/login` });
+    let newPage15 = Object.assign({}, newPage, { matchPath: `/z/login` });
     createPage(newPage15);
-    let newPage16 = Object.assign({}, newPage, { matchPath: `/posts` });
+    let newPage16 = Object.assign({}, newPage, { matchPath: `/z/posts` });
     createPage(newPage16);
-    let newPage17 = Object.assign({}, newPage, { matchPath: `/post/:id` });
+    let newPage17 = Object.assign({}, newPage, { matchPath: `/z/post/:id` });
     createPage(newPage17);
   }
   /*

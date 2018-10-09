@@ -69,7 +69,7 @@ class App extends Component {
 
   render() {
     const child = this.props.children;
-    const Page = props => { 
+    const Page = props => {
       return (
         <div
           className="page"
@@ -114,22 +114,22 @@ class App extends Component {
                     )}
 
                   <FadeTransitionRouter propstoshare={propstoshare}>
-                    <Page path="/car/create" />
-                    <Page path="/car/:id" />
-                    <Page path="/cars" />
-                    <Page path="/drafts" />
-                    <Page path="/users" />
-                    <Page path="/user/create" />
-                    <Page path="/user/:id" />
-                    <Page path="/api" />
-                    <Page path="/create" />
-                    <Page path="/post/:id" />
-                    <Page path="/login" />
-                    <Page path="/signup" />
-                    <Page path="/forgetPassword" />
-                    <Page path="/resetPassword" />
-                    <Page path="/updatePassword" />
-                    <Page path="/validateEmail" />
+                    <Page path="/z/car/create" />
+                    <Page path="/z/car/:id" />
+                    <Page path="/z/cars" />
+                    <Page path="/z/drafts" />
+                    <Page path="/z/users" />
+                    <Page path="/z/user/create" />
+                    <Page path="/z/user/:id" />
+                    <Page path="/z/api" />
+                    <Page path="/z/create" />
+                    <Page path="/z/post/:id" />
+                    <Page path="/z/login" />
+                    <Page path="/z/signup" />
+                    <Page path="/z/forgetPassword" />
+                    <Page path="/z/resetPassword" />
+                    <Page path="/z/updatePassword" />
+                    <Page path="/z/validateEmail" />
                     <Page path="/" default/>
                   </FadeTransitionRouter>
                 </div>
