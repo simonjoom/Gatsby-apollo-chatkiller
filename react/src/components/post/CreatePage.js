@@ -1,7 +1,7 @@
 import React from 'react'
 import gql from 'graphql-tag'
 import { navigate } from "gatsby"
-import UploadFile from '../nav/UploadFile'
+//import UploadFile from '../nav/UploadFile'
 import Autocomplete from './Autocomplete'
 import Paper from '@material-ui/core/Paper'
 import { graphql, compose } from 'react-apollo'
@@ -43,9 +43,10 @@ class CreatePage extends React.Component {
           />
           <Autocomplete onElemSelected={this.onElemSelected.bind(this)}/>
           <br/>
-          <UploadFile
+          {/*<UploadFile
             isEditMode={true}
             onSelectFile={(nameFile) => {this.setState({nameFile: nameFile})}}/>
+            */ }
           <br/>
           <Button onClick={this.handlePost} variant='raised' color='primary'>
             + Create Post
