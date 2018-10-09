@@ -1,39 +1,33 @@
-import React, { Component } from "react";
+import React from "react";
 import TopHello from "./TopHello";
-import { navigate } from "gatsby"; 
-import { Location } from "@reach/router";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
+import { navigate } from "gatsby";
+import Button from "../../../reactLIB/Button";
+//import Button from "@material-ui/core/Button";
 import BackButton from "./BackButton";
-import Icon from "@material-ui/core/Icon";
 
-class Header extends Component {
-  render() {
-    return (
-      <div className="flexGrow">
-        <AppBar position="static">
-          <Location>
-            {({ location }) => (
-              <Toolbar>
-                <BackButton location={location} />
-                <div className="flex" />
-                <Button
-                  onClick={() => {
-                    navigate("/");
-                  }}
-                >
-                  <Icon>home</Icon>
-                </Button>
-                <div className="flex" />
-                <TopHello />
-              </Toolbar>
-            )}
-          </Location>
-        </AppBar>
-      </div>
-    );
-  }
-}
+const Header = ({ location }) => {
+  return (
+    <div className="flexGrow md-grid md-grid--stacked">
+      <header className="headerchat md-grid md-grid--no-spacing">
+        <div className="md-cell md-cell-4">
+          <BackButton location={location} />
+        </div>
+        <div className="md-cell md-cell-4">
+          <Button
+            onClick={() => {
+              navigate("/");
+            }}
+            type="material"
+            flat
+            icon="home"
+          />
+        </div>
+        <div className="md-cell md-cell-4">
+          <TopHello />
+        </div>
+      </header>
+    </div>
+  );
+};
 
 export default Header;

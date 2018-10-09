@@ -11,7 +11,7 @@ export default class ImageTemplate extends React.Component {
       urlFile = 'http://localhost:8000/' + this.props.nameFile
     }
     return (
-      <div>
+      <>
         {this.props.format === 'avatar' ? (
           <div>
             <Avatar src={urlFile}/>
@@ -23,7 +23,7 @@ export default class ImageTemplate extends React.Component {
             )}
           </div>
         )}
-      </div>
+      </>
     )
   }
 }

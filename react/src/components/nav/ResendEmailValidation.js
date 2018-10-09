@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
-import Button from '../../reactLIB/Button'
-import SnackBarCustom from './SnackBarCustom'
+import Button from '../../reactLIB/Button' 
 
 class ResendEmailValidation extends Component {
   state = {
     interval : 0
   }
+  notifyAboutComment(comment) { 
+    var toastHTML =
+      "<span>" +
+      comment +
+      "</span><button class='btn-flat toast-action'>Undo</button>";
+    typeof M !== "undefined" && M.toast({ html: toastHTML });
+  }
+
   render() {
     return (
       <span>
@@ -17,8 +24,7 @@ class ResendEmailValidation extends Component {
           <Button variant='raised' onClick={() => this.sendEmail()}>
             Resend Email
           </Button>
-        )}
-        <SnackBarCustom ref={instance => { this.child = instance }}/>
+        )} 
       </span>
     )
   }
@@ -30,10 +36,10 @@ class ResendEmailValidation extends Component {
     })
     .then((result) => {
       const messageSnackBar = `Email sent successfully to ${result.data.sendLinkValidateEmail.email}!`
-      this.child._openSnackBar(messageSnackBar)
+      this.notifyAboutComment(messageSnackBar) 
     })
     .catch((e) => {
-      this.child._openSnackBar(e.graphQLErrors[0].message)
+      this.notifyAboutComment(e.graphQLErrors[0].message)
     })
   }
 

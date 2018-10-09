@@ -1,31 +1,30 @@
-import React, { Component } from 'react'
-import { AUTH_TOKEN } from '../../constants/constants'
-import Paper from '@material-ui/core/Paper'
-import Icon from '../../reactLIB/Icon' 
-import ResendEmailValidation from './ResendEmailValidation'
+import React, { Component } from "react";
+import { AUTH_TOKEN } from "../../constants/constants"; 
+import Icon from "../../reactLIB/Icon";
+import Card from "../../reactLIB/Card";
+import ResendEmailValidation from "./ResendEmailValidation";
 
 class EmailValidated extends Component {
   state = {
-    interval : 0
-  }
+    interval: 0
+  };
   render() {
+    const authToken = localStorage.getItem(AUTH_TOKEN);
 
-    const authToken = global.isSSR ||localStorage.getItem(AUTH_TOKEN)
-
-    if(authToken && !this.props.emailvalidated) {
+    if (authToken && !this.props.emailvalidated) {
       return (
-        <div className='paperOut'>
-          <Paper className='paperIn'>
-            <Icon>error_outline</Icon>{' '}
-              Email not validated.<ResendEmailValidation />
-            </Paper>
-          </div>
-        )
+        <div className="paperOut">
+          <Card className="paperIn">
+            <Icon type="material" className="error_outline" /> Email not
+            validated.
+            <ResendEmailValidation />
+          </Card>
+        </div>
+      );
     } else {
-      return(null)
+      return null;
     }
   }
 }
- 
 
-export default  EmailValidated
+export default EmailValidated;
