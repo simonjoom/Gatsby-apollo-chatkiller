@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
 import SnackBarCustom from '../../nav/SnackBarCustom'
-import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
+import Card from '../../../reactLIB/Card'
+import Button from '../../../reactLIB/Button'
+import Input from '../../../reactLIB/Input'
+import Row from '../../../reactLIB/Row'
 
 class ForgetPassword extends Component {
   state = {
@@ -14,27 +15,31 @@ class ForgetPassword extends Component {
   render() {
     return (
       <div className='paperOut'>
-        <Paper className='paperIn'>
+        <Card className='paperIn' s={12}>
         <h4 className='mv3'>
           Forget Password
         </h4>
         <div className='flex flex-column'>
 
-          <TextField
+          <Input
             value={this.state.email}
             onChange={e => this.setState({ email: e.target.value })}
             type='text'
             label='Your email address'
+            s={12}
           />
 
         </div>
         <div className='flex mt3'>
-          <Button variant='raised' onClick={() => this._confirm()}>
+          <Button 
+            variant='raised' 
+            onClick={() => this._confirm()}
+          >
             Ok
           </Button>
         </div>
         <SnackBarCustom ref={instance => { this.child = instance }}/>
-      </Paper>
+      </Card>
       </div>
     )
   }

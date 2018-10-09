@@ -6,7 +6,6 @@ import gql from 'graphql-tag'
 import SnackBarCustom from '../../nav/SnackBarCustom'
 import Button from '../../../reactLIB/Button'
 import Card from "../../../reactLIB/Card"
-
 import Input from '../../../reactLIB/Input'
 import Row from '../../../reactLIB/Row'
 
@@ -25,21 +24,6 @@ export class Login extends Component {
           Login
         </h4>
         <div className='flex flex-column'>
-
-          {/* <TextField
-            id='email'
-            value={this.state.email}
-            onChange={e => this.setState({ email: e.target.value })}
-            type='text'
-            label='Your email address'
-          />
-          <TextField
-            id='password'
-            value={this.state.password}
-            onChange={e => this.setState({ password: e.target.value })}
-            type='password'
-            label='Password'
-          /> */}
           <Row style={{width:'100%', marginTop: 20}}>
             <Input
               id='email'

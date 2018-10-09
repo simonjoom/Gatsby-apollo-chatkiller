@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
-import Button from '@material-ui/core/Button'
-import Input from '@material-ui/core/Input'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import Icon from '@material-ui/core/Icon'
-import InputLabel from '@material-ui/core/InputLabel'
-import FormControl from '@material-ui/core/FormControl'
-import FormHelperText from '@material-ui/core/FormHelperText'
+import Button from '../../../reactLIB/Button'
+import Input from '../../../reactLIB/Input'
 
 export default class Password extends Component {
   state = {
@@ -19,7 +14,7 @@ export default class Password extends Component {
     passwordMinimumLength: 8
   }
   UNSAFE_componentWillReceiveProps() {
-    this.input2.focus()
+    // this.input2.focus()
   }
   onChange2(e){
     let inputValidation2 = false
@@ -86,38 +81,36 @@ export default class Password extends Component {
 
   render() {
     return (
-
-      <FormControl className={'wrapperAnimate ' + (this.props.activeStep ? 'focusField' : 'notFocusField')}>
-        <InputLabel htmlFor='password'>Choose a safe password</InputLabel>
+        <div>
         <Input
           id='password'
+          label="Choose a safe password"
           value={this.props.password}
           error={!this.state.inputValidation2}
           onChange={this.onChange2.bind(this)}
           type='password'
           inputRef={node => this.input2 = node}
           onKeyPress={this.handleKey}
-          endAdornment={
-            <InputAdornment position='end'>
-              {this.props.activeStep && (
-                <Button onClick={this.handleNext} variant='fab' color='primary' mini>
-                  <Icon>done</Icon>
-                </Button>
-              )}
-            </InputAdornment>
-          }
         />
+        {this.props.activeStep && (
+            <Button 
+            onClick={this.handleNext}
+            type="material-icons"
+            icon='done'
+            floating
+          >
+          </Button>
+        )}
       {!this.state.isPasswordLongEnough && (
-        <FormHelperText>At least {this.state.passwordMinimumLength} characters long.</FormHelperText>
+        <p>At least {this.state.passwordMinimumLength} characters long.</p>
       )}
       {!this.state.hasLowerCase && (
-        <FormHelperText>At least a lower case letter.</FormHelperText>
+        <p>At least a lower case letter.</p>
       )}
       {!this.state.hasUpperCase && (
-        <FormHelperText>At least an upper case letter.</FormHelperText>
+        <p>At least an upper case letter.</p>
       )}
-      </FormControl>
-
+    </div>
     )
   }
 }

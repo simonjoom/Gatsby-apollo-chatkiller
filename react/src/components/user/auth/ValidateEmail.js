@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
 import SnackBarCustom from '../../nav/SnackBarCustom'
-import Paper from '@material-ui/core/Paper'
+import Card from '../../../reactLIB/Card'
 import { withApollo } from 'react-apollo'
 
 const queryString = require('query-string')
@@ -23,7 +23,7 @@ class ValidateEmail extends Component {
   render() {
     return (
       <div className='paperOut'>
-        <Paper className='paperIn'>
+        <Card className='paperIn' s={12}>
         <h4 className='mv3'>
           Email Validation
         </h4>
@@ -32,7 +32,7 @@ class ValidateEmail extends Component {
         </div>
 
         <SnackBarCustom ref={instance => { this.child = instance }}/>
-      </Paper>
+      </Card>
       </div>
     )
   }

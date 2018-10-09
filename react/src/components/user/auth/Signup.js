@@ -5,15 +5,11 @@ import { navigate } from "gatsby";
 import gql from 'graphql-tag'
 import SnackBarCustom from '../../nav/SnackBarCustom'
 import Password from './Password'
-import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import Icon from '@material-ui/core/Icon'
-import LinearProgress from '@material-ui/core/LinearProgress'
-import Input from '@material-ui/core/Input'
-import InputLabel from '@material-ui/core/InputLabel'
-import FormControl from '@material-ui/core/FormControl'
+import Card from '../../../reactLIB/Card'
+import Button from '../../../reactLIB/Button'
+import Input from '../../../reactLIB/Input'
 import { withApollo } from 'react-apollo'
+import ProgressBar from '../../../reactLIB/ProgressBar';
 
 var validator = require('email-validator')
 
@@ -67,7 +63,7 @@ class Signup extends Component {
         this.setState({
           activeStep: this.state.activeStep + 1,
         }, () => {
-           this.input1.focus()
+          //  this.input1.focus()
         })
       }
       if(this.state.activeStep === 1 ) {
@@ -101,63 +97,65 @@ class Signup extends Component {
   render() {
     return (
       <div className='paperOut'>
-        <Paper className='paperIn'>
+        <Card className='paperIn' s={12} style={{padding:0}}>
         <h4 className='mv3'>
           Sign Up
         </h4>
         <div className='flex flex-column'>
 
-        <LinearProgress variant='buffer'
-          value={this.state.activeStep * 100 / this.state.maxStep }
-          valueBuffer={this.calculateBuffer()}
+        <ProgressBar variant='buffer'
+          progress={this.state.activeStep * 100 / this.state.maxStep }
+          // valueBuffer={this.calculateBuffer()}
              />
           <br/>
             <div className='tac'>
-              <FormControl className={'wrapperAnimate ' + (this.state.activeStep === 0 ? 'focusField' : 'notFocusField')}>
-                <InputLabel htmlFor='name'>Your name</InputLabel>
+              <div className={'wrapperAnimate ' + (this.state.activeStep === 0 ? 'focusField' : 'notFocusField')}>
                 <Input
                   id='name'
+                  label="Your name"
                   value={this.state.name}
                   inputRef={node => this.input0 = node}
                   onChange={e => this.setState({ name: e.target.value })}
                   type='text'
                   onKeyPress={this.handleKey}
-                  endAdornment={
-                    <InputAdornment position='end'>
-                      {this.state.activeStep === 0 && (
-                        <Button onClick={this.handleNext} variant='fab' color='primary' mini>
-                          <Icon>navigate_next</Icon>
-                        </Button>
-                      )}
-                    </InputAdornment>
-                  }
+                  s={12}
                 />
-            </FormControl>
-            <br/><br/>
+                {this.state.activeStep === 0 && (
+                    <Button 
+                    onClick={this.handleNext}
+                    type="material-icons"
+                    icon='navigate_next'
+                    floating
+                  >
+                  </Button>
+                )}
+            </div>
+            <br/>
             {this.state.activeStep >= 1 && (
-              <FormControl className={'wrapperAnimate ' + (this.state.activeStep === 1 ? 'focusField' : 'notFocusField')}>
-                <InputLabel htmlFor='email'>Your email address</InputLabel>
+              <div className={'wrapperAnimate ' + (this.state.activeStep === 1 ? 'focusField' : 'notFocusField')}>
                 <Input
                   id='email'
+                  label="Your email address"
                   value={this.state.email}
                   error={!this.state.emailValidation}
                   onChange={this.onChange1.bind(this)}
                   type='text'
                   inputRef={node => this.input1 = node}
                   onKeyPress={this.handleKey}
-                  endAdornment={
-                    <InputAdornment position='end'>
-                      {this.state.activeStep === 1 && (
-                        <Button onClick={this.handleNext} variant='fab' color='primary' mini>
-                          <Icon>navigate_next</Icon>
-                        </Button>
-                      )}
-                  </InputAdornment>
-                }
+                  s={12}
                 />
-              </FormControl>
+                {this.state.activeStep === 1 && (
+                    <Button 
+                    onClick={this.handleNext}
+                    type="material-icons"
+                    icon='navigate_next'
+                    floating
+                  >
+                  </Button>
+                )}
+              </div>
             )}
-            <br/><br/>
+            <br/>
             {this.state.activeStep >= 2 && (
               <Password
                 handleNext={this.handleNext.bind(this)}
@@ -167,7 +165,7 @@ class Signup extends Component {
           </div>
         </div>
         <SnackBarCustom ref={instance => { this.child = instance }}/>
-      </Paper>
+      </Card>
       </div>
     )
   }

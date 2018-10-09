@@ -3,9 +3,9 @@ import { AUTH_TOKEN } from '../../../constants/constants'
 import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
 import SnackBarCustom from '../../nav/SnackBarCustom'
-import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
+import Card from '../../../reactLIB/Card'
+import Button from '../../../reactLIB/Button'
+import Input from '../../../reactLIB/Input'
 
 const queryString = require('query-string')
 
@@ -28,19 +28,21 @@ class ResetPassword extends Component {
   render() {
     return (
       <div className='paperOut'>
-        <Paper className='paperIn'>
+        <Card className='paperIn'>
         <h4 className='mv3'>
           Reset Password
         </h4>
         <div className='flex flex-column'>
 
-          <TextField
+          <Input
             value={this.state.password}
+            s={12}
             onChange={e => this.setState({ password: e.target.value })}
             type='password'
             label='Choose a safe password'
           />
-          <TextField
+          <Input
+            s={12}
             value={this.state.password2}
             onChange={e => this.setState({ password2: e.target.value })}
             type='password'
@@ -55,7 +57,7 @@ class ResetPassword extends Component {
 
         </div>
         <SnackBarCustom ref={instance => { this.child = instance }}/>
-      </Paper>
+      </Card>
       </div>
     )
   }

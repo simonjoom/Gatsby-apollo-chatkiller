@@ -3,16 +3,11 @@ import { AUTH_TOKEN } from '../../../constants/constants'
 import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
 import SnackBarCustom from '../../nav/SnackBarCustom'
-import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button'
+import Card from '../../../reactLIB/Card'
+import Button from '../../../reactLIB/Button'
 import NotAuth from '../../error/NotAuth'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import Input from '@material-ui/core/Input'
-import Icon from '@material-ui/core/Icon'
-import LinearProgress from '@material-ui/core/LinearProgress'
-import IconButton from '@material-ui/core/IconButton'
-import FormControl from '@material-ui/core/FormControl'
-import InputLabel from '@material-ui/core/InputLabel'
+import Input from '../../../reactLIB/Input'
+import ProgressBar from "../../../reactLIB/ProgressBar"
 
 class ChangePassword extends Component {
   state = {
@@ -42,8 +37,8 @@ class ChangePassword extends Component {
       this.setState({
         activeStep: this.state.activeStep + 1,
       }, function () {
-        if(this.state.activeStep === 1 ) { this.input1.focus() }
-        if(this.state.activeStep === 2 ) { this.input2.focus() }
+        // if(this.state.activeStep === 1 ) { this.input1.focus() }
+        // if(this.state.activeStep === 2 ) { this.input2.focus() }
       })
       if(this.state.activeStep === 2) {
         this._confirm()
@@ -73,22 +68,17 @@ class ChangePassword extends Component {
 
     return (
       <div className='paperOut'>
-        <Paper className='paperIn'>
+        <Card className='paperIn' s={12} style={{padding:0}}>
         <h4 className='mv3'>
           Change Password
         </h4>
         <div className='flex flex-column'>
+          <ProgressBar progress = {this.state.activeStep * 100 / this.state.maxStep }/>
 
-          <LinearProgress variant='buffer'
-            value={this.state.activeStep * 100 / this.state.maxStep }
-            valueBuffer={this.calculateBuffer()}
-               />
-
-               <br/>
-                 <div className='tac'>
-                   <FormControl className={'wrapperAnimate ' + (this.state.activeStep === 0 ? 'focusField' : 'notFocusField')}>
-                     <InputLabel htmlFor='oldPassword'>Your actual password</InputLabel>
+            <br/>
+            <div className='tac'>
             <Input
+              label="Your actual password"
               id='oldPassword'
               value={this.state.oldPassword}
               onChange={e => this.setState({ oldPassword: e.target.value })}
@@ -96,91 +86,79 @@ class ChangePassword extends Component {
               inputRef={node => this.input0 = node}
               className={'wrapperAnimate ' + (this.state.activeStep === 0 ? 'focusField' : 'notFocusField')}
               onKeyPress={this.handleKey}
-              endAdornment={
-                <InputAdornment position='end'>
-                  {this.state.activeStep === 0 && (
-                    <Button onClick={this.handleNext} variant='fab' color='primary' mini>
-                      <Icon>navigate_next</Icon>
-                    </Button>
-                  )}
-                </InputAdornment>
-              }
-              startAdornment={
-                <InputAdornment position='start'>
-                  {this.state.activeStep === 0 && (
-                    <IconButton onClick={()=>this.showPassword(0)}>
-                      <Icon>{this.state.showPassword0 ? 'visibility_off' : 'visibility'}</Icon>
-                    </IconButton>
-                  )}
-                </InputAdornment>
-              }
             />
-            </FormControl>
-            <br/><br/>
-            {this.state.activeStep >= 1 && (
-              <FormControl className={'wrapperAnimate ' + (this.state.activeStep === 1 ? 'focusField' : 'notFocusField')}>
-                <InputLabel htmlFor='newPassword'>Choose a safe password</InputLabel>
-            <Input
-              id='newPassword'
-              value={this.state.newPassword}
-              onChange={e => this.setState({ newPassword: e.target.value })}
-              type={this.state.showPassword1 ? 'text' : 'password'}
-              inputRef={node => this.input1 = node}
-              onKeyPress={this.handleKey}
-              startAdornment={
-                <InputAdornment position='start'>
-                  {this.state.activeStep === 1 && (
-                    <IconButton onClick={()=>this.showPassword(1)}>
-                      <Icon>{this.state.showPassword0 ? 'visibility_off' : 'visibility'}</Icon>
-                    </IconButton>
-                  )}
-                </InputAdornment>
-              }
-              endAdornment={
-                <InputAdornment position='end'>
-                  {this.state.activeStep === 1 && (
-                    <Button onClick={this.handleNext} variant='fab' color='primary' mini>
-                      <Icon>navigate_next</Icon>
-                    </Button>
-                  )}
-                </InputAdornment>
-            }
-            />
-          </FormControl>
-            )}
-            <br/><br/>
-            {this.state.activeStep >= 2 && (
-              <FormControl className={'wrapperAnimate ' + (this.state.activeStep === 2 ? 'focusField' : 'notFocusField')}>
-                <InputLabel htmlFor='newPassword2'>Choose a safe password</InputLabel>
-            <Input
-              id='newPassword2'
-              value={this.state.newPassword2}
-              onChange={e => this.setState({ newPassword2: e.target.value })}
-              type={this.state.showPassword2 ? 'text' : 'password'}
-              label='Retype your safe password'
-              inputRef={node => this.input2 = node}
-              onKeyPress={this.handleKey}
-              startAdornment={
-                <InputAdornment position='start'>
-                  {this.state.activeStep === 2 && (
-                    <IconButton onClick={()=>this.showPassword(2)}>
-                      <Icon>{this.state.showPassword0 ? 'visibility_off' : 'visibility'}</Icon>
-                    </IconButton>
-                  )}
-                </InputAdornment>
-              }
-              endAdornment={
-                <InputAdornment position='end'>
-                  {this.state.activeStep === 2 && (
-                    <Button onClick={this.handleNext} variant='fab' color='primary' mini>
-                      <Icon>done</Icon>
-                    </Button>
-                  )}
-                </InputAdornment>
+            <div style={{display:'flex', justifyContent: 'space-evenly', alignItems:'center'}}>
+              {this.state.activeStep === 0 && (
+                <i className="material-icons" onClick={()=>this.showPassword(0)}>{this.state.showPassword0 ? 'visibility_off' : 'visibility'}</i>
+              )}
 
-            }
-            />
-          </FormControl>
+              {this.state.activeStep === 0 && (
+                <Button 
+                onClick={this.handleNext}
+                type="material-icons"
+                icon='navigate_next'
+                floating
+              >
+              </Button>
+              )}
+            </div>
+
+            
+            {this.state.activeStep >= 1 && (
+              <div>
+              <Input
+                id='newPassword'
+                value={this.state.newPassword}
+                onChange={e => this.setState({ newPassword: e.target.value })}
+                type={this.state.showPassword1 ? 'text' : 'password'}
+                inputRef={node => this.input1 = node}
+                onKeyPress={this.handleKey}
+              />
+              <div style={{display:'flex', justifyContent: 'space-evenly', alignItems:'center'}}>
+                {this.state.activeStep === 1 && (
+                  <i className="material-icons" onClick={()=>this.showPassword(1)}>{this.state.showPassword0 ? 'visibility_off' : 'visibility'}</i>
+                )}
+
+                {this.state.activeStep === 1 && (
+                  <Button 
+                  onClick={this.handleNext}
+                  type="material-icons"
+                  icon='navigate_next'
+                  floating
+                >
+                </Button>
+                )}
+              </div>
+              </div>
+            )}
+            
+            {this.state.activeStep >= 2 && (
+              <div>
+                <Input
+                  id='newPassword2'
+                  value={this.state.newPassword2}
+                  onChange={e => this.setState({ newPassword2: e.target.value })}
+                  type={this.state.showPassword2 ? 'text' : 'password'}
+                  label='Retype your safe password'
+                  inputRef={node => this.input2 = node}
+                  onKeyPress={this.handleKey}
+                />
+                <div style={{display:'flex', justifyContent: 'space-evenly', alignItems:'center'}}>
+                  {this.state.activeStep === 2 && (
+                    <i className="material-icons" onClick={()=>this.showPassword(2)}>{this.state.showPassword0 ? 'visibility_off' : 'visibility'}</i>
+                  )}
+
+                  {this.state.activeStep === 2 && (
+                    <Button 
+                    onClick={this.handleNext}
+                    type="material-icons"
+                    icon='navigate_next'
+                    floating
+                  >
+                  </Button>
+                  )}
+                </div>
+              </div>
             )}
 
           </div>
@@ -192,7 +170,7 @@ class ChangePassword extends Component {
           </div>
         </div>
         <SnackBarCustom ref={instance => { this.child = instance }}/>
-      </Paper>
+      </Card>
       </div>
     )
   }

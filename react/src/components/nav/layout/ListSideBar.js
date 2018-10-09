@@ -9,7 +9,7 @@ import List from "@material-ui/core/List";
 import Icon from "@material-ui/core/Icon";
 import { AUTH_TOKEN } from "../../../constants/constants";
 
-class EmulateItem extends Component {
+export class EmulateItem extends Component {
   render() {
     const liClass = {
       display: "flex",
@@ -124,3 +124,4 @@ class ListSideBar extends Component {
 }
 
 export default ListSideBar;
+
