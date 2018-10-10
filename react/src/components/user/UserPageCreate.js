@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
 import NotAuth from '../error/NotAuth'
-import Card from "../../reactLIB/Card"; 
+import Card from "../../reactLIB/Card";
 import { withApollo } from 'react-apollo'
 import UserPageForm from './UserPageForm'
 import { AUTH_TOKEN } from '../../constants/constants'
@@ -24,13 +24,13 @@ class UserPageCreate extends React.Component {
   }
 
   render() {
-    const authToken = global.isSSR ||localStorage.getItem(AUTH_TOKEN)
+    const authToken = (process.env.GATSBY_BUILD_STAGE!=="build-html") && localStorage.getItem(AUTH_TOKEN)||true;
 
     if(!authToken) {
       return (<NotAuth/>)
     }
 
-    return ( 
+    return (
         <div className='paperOut'>
           <Card className='paperIn'>
             <div className='flex justify-between items-center'>
@@ -55,7 +55,7 @@ class UserPageCreate extends React.Component {
                 </div>
 
           </Card>
-        </div> 
+        </div>
     )
   }
 
@@ -91,6 +91,6 @@ const CREATE_USER_MUTATION = gql`
 export default compose(
   graphql(CREATE_USER_MUTATION, {
     name: 'createUser',
-  }), 
+  }),
   withApollo
 )(UserPageCreate)

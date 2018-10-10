@@ -8,7 +8,7 @@ import { withApollo } from "react-apollo";
 
 class TopHello extends Component {
   render() {
-    const authToken = localStorage.getItem(AUTH_TOKEN);
+    const authToken = (process.env.GATSBY_BUILD_STAGE!=="build-html") && localStorage.getItem(AUTH_TOKEN)||true;
     return (
       <>
         {authToken &&

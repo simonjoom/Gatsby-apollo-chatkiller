@@ -14,15 +14,15 @@ class ChatsPage extends Component {
     this.setState({ openChat: props.openChat });
   }*/
   render() {
-    const authToken = localStorage.getItem(AUTH_TOKEN); 
+    const authToken = (process.env.GATSBY_BUILD_STAGE!=="build-html") && localStorage.getItem(AUTH_TOKEN)||true;
     if (!authToken) {
       return <NotAuth />;
     }
     return (
       <div style={{ margin: 0, padding:0, backgroundColor: 'white' }}>
         <div className="paperIn" style={{margin:0, padding:0, marginTop: 5}}>
-          <p style={{fontSize:'1.4em', margin:10}}>Let's know if you have any questions</p> 
-            <ChatsPageList orderBy={this.state.orderBy} /> 
+          <p style={{fontSize:'1.4em', margin:10}}>Let's know if you have any questions</p>
+            <ChatsPageList orderBy={this.state.orderBy} />
           <CreateChat />
         </div>
       </div>

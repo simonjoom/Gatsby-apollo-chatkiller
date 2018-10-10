@@ -17,6 +17,25 @@ import Header from "../components/nav/layout/Header";
 import NotFound from "../components/error/NotFound";
 import SideBar from "../components/nav/layout/SideBar";
 import { SideBarContext } from "../components/SideBarContext";
+import UsersPage from "../components/user/UsersPage";
+import UserPageCreate from "../components/user/UserPageCreate";
+import UserPage from "../components/user/UserPage";
+import CreateCar from "../components/car/CreateCar";
+import DetailCar from "../components/car/DetailCar";
+import CarsPage from "../components/car/CarsPage";
+import Api from "../components/api/Api";
+import ForgetPassword from "../components/user/auth/ForgetPassword";
+import Login from "../components/user/auth/Login";
+import Signup from "../components/user/auth/Signup";
+import ResetPassword from "../components/user/auth/ResetPassword";
+import UpdatePassword from "../components/user/auth/UpdatePassword";
+import ValidateEmail from "../components/user/auth/ValidateEmail";
+import DraftsPage from "../components/post/DraftsPage";
+import CreatePage from "../components/post/CreatePage";
+import DetailPage from "../components/post/DetailPage";
+import FeedPage from "../components/post/FeedPage";
+import ChatsPage from "../components/chat/ChatsPage";
+import { AUTH_TOKEN } from "../constants/constants";
 
 class App extends Component {
   state = {
@@ -68,16 +87,16 @@ class App extends Component {
   isMobile = () => (window.innerWidth < 600 ? true : false);
 
   render() {
-    const child = this.props.children;
+    const location = this.props.location;
+
+  const authToken = (process.env.GATSBY_BUILD_STAGE!=="build-html") && localStorage.getItem(AUTH_TOKEN)||true;
+
     const Page = props => {
       return (
         <div
           className="page"
-          default={!!props.default}
-          path={props.path}
-          style={{ background: `hsl(${props.page * 75}, 60%, 60%)` }}
         >
-          {child}
+          {props.page}
         </div>
       );
     };
@@ -104,36 +123,45 @@ class App extends Component {
               <li>
                 <div className="collapsible-body">
                 <div className="md-grid">
-
-          <SideBar />
+                  <SideBar />
                   <div className="md-cell md-cell--10">
                   {Me.loading && <Loading />}
                   {!global.isSSR || (Me.error && <NotAuth />)}
-                  <Header location={propstoshare.location} />
+                  <Header location={location} />
                   {!Me.loading &&
                     !Me.error &&
                     validation && (
                       <EmailValidated emailvalidated={Me.me.emailvalidated} />
                     )}
 
-                  <FadeTransitionRouter propstoshare={propstoshare}>
-                    <Page path="/z/car/create" />
-                    <Page path="/z/car/:id" />
-                    <Page path="/z/cars" />
-                    <Page path="/z/drafts" />
-                    <Page path="/z/users" />
-                    <Page path="/z/user/create" />
-                    <Page path="/z/user/:id" />
-                    <Page path="/z/api" />
-                    <Page path="/z/create" />
-                    <Page path="/z/post/:id" />
-                    <Page path="/z/login" />
-                    <Page path="/z/signup" />
-                    <Page path="/z/forgetPassword" />
-                    <Page path="/z/resetPassword" />
-                    <Page path="/z/updatePassword" />
-                    <Page path="/z/validateEmail" />
-                    <Page path="/" default/>
+                  <FadeTransitionRouter location={location}>
+                     <Page path="/z/users" page={<UsersPage />} />
+                      <Page path="/z/user/create" page={<UserPageCreate />} />
+                      <Page path="/z/user/:id" page={<UserPage />} />
+                      <Page path="/z/chats" page={<ChatsPage />} />
+                      <Page path="/z/login" page={<Login />} />
+                      <Page path="/z/signup" page={<Signup />} />
+                      <Page
+                        path="/z/forgetPassword"
+                        page={<ForgetPassword />}
+                      />
+                      <Page path="/z/resetPassword" page={<ResetPassword />} />
+                      <Page
+                        path="/z/updatePassword"
+                        page={<UpdatePassword />}
+                      />
+                      <Page path="/z/validateEmail" page={<ValidateEmail />} />
+                      <Page
+                        path="/"
+                        default
+                        page={
+                          !authToken ? (
+                            <Login path="/" />
+                          ) : (
+                            <ChatsPage path="/" />
+                          )
+                        }
+                      />
                   </FadeTransitionRouter>
                 </div>
                 </div>
@@ -146,23 +174,24 @@ class App extends Component {
             </ul>
           </div>
         </div>
+        {this.props.children}
       </SideBarContext.Provider>
     );
   }
 }
 
-const FadeTransitionRouter = ({ propstoshare, children }) => {
+const FadeTransitionRouter = ({ location, children }) => {
   // const childrenpass = React.cloneElement(children, propstoshare);
   return (
-    <TransitionGroup className="transition-group">
-      <CSSTransition
-        key={propstoshare.location.key}
-        classNames="fade"
-        timeout={{ enter: 500, exit: 300 }}
-      >
-        <Router location={propstoshare.location}>{children}</Router>
-      </CSSTransition>
-    </TransitionGroup>
+      <TransitionGroup className="transition-group">
+          <CSSTransition
+            key={location.key}
+            classNames="fade"
+            timeout={300}
+          >
+            <Router location={location} className="router">{children}</Router>
+          </CSSTransition>
+        </TransitionGroup>
   );
 };
 

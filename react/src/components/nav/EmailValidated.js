@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { AUTH_TOKEN } from "../../constants/constants"; 
+import { AUTH_TOKEN } from "../../constants/constants";
 import Icon from "../../reactLIB/Icon";
 import Card from "../../reactLIB/Card";
 import ResendEmailValidation from "./ResendEmailValidation";
@@ -9,7 +9,7 @@ class EmailValidated extends Component {
     interval: 0
   };
   render() {
-    const authToken = localStorage.getItem(AUTH_TOKEN);
+    const authToken = (process.env.GATSBY_BUILD_STAGE!=="build-html") && localStorage.getItem(AUTH_TOKEN)||true;
 
     if (authToken && !this.props.emailvalidated) {
       return (

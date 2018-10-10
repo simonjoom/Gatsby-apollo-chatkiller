@@ -9,7 +9,7 @@ import { AUTH_TOKEN } from "../../constants/constants";
 import Card from "../../reactLIB/Card";
 import Button from "../../reactLIB/Button";
 //import Icon from "@material-ui/core/Icon";
-import NotFound from "../error/NotFound"; 
+import NotFound from "../error/NotFound";
 //import UploadFile from "../nav/UploadFile";
 import { withApollo } from "react-apollo";
 import Loading from "../error/Loading";
@@ -45,7 +45,7 @@ class UserPage extends React.Component {
       return <Loading />;
     }
 
-    const authToken = localStorage.getItem(AUTH_TOKEN);
+    const authToken = (process.env.GATSBY_BUILD_STAGE!=="build-html") && localStorage.getItem(AUTH_TOKEN)||true;
 
     return (
       <div className="paperOut">

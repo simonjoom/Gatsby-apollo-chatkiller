@@ -42,11 +42,11 @@ class ListSideBar extends Component {
   /*
   toggleDrawer = (isSideBarOpen) => () => {
     this.setState({isSideBarOpen: isSideBarOpen})
-  } 
+  }
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({isSideBarOpen: nextProps.isSideBarOpen})
   }
-  
+
         {this.props.isMobile && (
           <MenuItem>
             <ListItemIcon>
@@ -57,7 +57,7 @@ class ListSideBar extends Component {
   */
 
   render() {
-    const authToken = localStorage.getItem(AUTH_TOKEN);
+    const authToken = (process.env.GATSBY_BUILD_STAGE!=="build-html") && localStorage.getItem(AUTH_TOKEN)||true;
     return (
       <ul>
         <EmulateItem icon="view_quilt" to="/">

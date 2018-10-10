@@ -29,7 +29,7 @@ class CarsPage extends Component {
         query: ""
       });
     };
-    const authToken = global.isSSR ||localStorage.getItem(AUTH_TOKEN);
+    const authToken = (process.env.GATSBY_BUILD_STAGE!=="build-html") && localStorage.getItem(AUTH_TOKEN)||true;
     if (!authToken) {
       return <NotAuth />;
     }

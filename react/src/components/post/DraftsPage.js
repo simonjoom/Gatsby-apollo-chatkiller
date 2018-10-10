@@ -17,7 +17,7 @@ class DraftsPage extends React.Component {
   }
 
   render() {
-    const authToken = global.isSSR ||localStorage.getItem(AUTH_TOKEN)
+    const authToken = (process.env.GATSBY_BUILD_STAGE!=="build-html") && localStorage.getItem(AUTH_TOKEN)||true;
     if (this.props.draftsQuery.error) {
       return (<NotAuth/>)
     }

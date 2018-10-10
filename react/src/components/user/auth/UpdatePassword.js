@@ -67,7 +67,7 @@ class ChangePassword extends Component {
   };
 
   render() {
-    const authToken = localStorage.getItem(AUTH_TOKEN);
+    const authToken = (process.env.GATSBY_BUILD_STAGE!=="build-html") && localStorage.getItem(AUTH_TOKEN)||true;
     if (!authToken) {
          return <NotAuth />;
     }
