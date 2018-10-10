@@ -90,7 +90,7 @@ const httpLink = new createHttpLink({ uri: "http://localhost:4000" });
 const middlewareAuthLink = setContext((_, { headers }) => {
   console.log("middlewareAuthLink", AUTH_TOKEN);
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem(AUTH_TOKEN);
+  const token = (process.env.GATSBY_BUILD_STAGE!=="build-html") && localStorage.getItem(AUTH_TOKEN)||true;
   // return the headers to the context so httpLink can read them
   return {
     headers: {
@@ -120,7 +120,7 @@ const client = new ApolloClient({
 export const wrapPageElement = ({ element, props }) => {
   // const { lng } = props.pageContext;
   // if (!lng)
-  return <Layout>{element}</Layout>;
+  return <Layout location={props.location}>{element}</Layout>;
 };
 
 export const wrapRootElement = ({ element }) => {

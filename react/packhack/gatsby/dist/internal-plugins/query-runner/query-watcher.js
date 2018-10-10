@@ -195,7 +195,7 @@ const queueQueriesForPageComponent = componentPath => {
   // the changing of the query could have changed the data dependencies.
   // Re-running the queries will add back data dependencies.
 
-  boundActionCreators.deleteComponentsDependencies(pages.map(p => p.matchPath?p.matchPath:p.path || p.id));
+  boundActionCreators.deleteComponentsDependencies(pages.map(p => p.path || p.id));
   pages.forEach(page => queueQueryForPathname(page.matchPath?page.matchPath:page.path));
 };
 

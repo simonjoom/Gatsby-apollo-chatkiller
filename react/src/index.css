@@ -1,5 +1,55 @@
 @import 'https://fonts.googleapis.com/css?family=Open+Sans:300, 400';
 
+.transition-group {
+  flex: 1;
+  min-height: 600px;
+  position: relative;
+}
+
+.router {
+  width: 100%;
+   position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.page {
+   position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /*
+  color: white;
+  font-size: 100px;*/
+  text-align: center;
+  font-style: italic;
+  font-family: Times;
+  padding-top: 20px;
+}
+
+.fade-exit .page {
+  opacity: 1;
+  z-index: 2;
+}
+.fade-exit.fade-exit-active .page {
+  opacity: 0;
+  transition: opacity 450ms ease-out;
+}
+
+.fade-enter .page {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active .page {
+  opacity: 1;
+  transition: opacity 450ms ease-in;
+}
+
+
 .cardchat.card-content {
   padding: 4px;
   border-radius: 0 0 2px 2px;
@@ -86,34 +136,6 @@
   z-index: 1111;
   right: 0;
   bottom: 0;
-}
-
-.transition-group {
-  flex: 1;
-  position: relative;
-}
-
-.router {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-.page {
-  font-style: italic;
-  font-family: Times;
-}
-
-.fade-enter .page {
-  opacity: 0;
-  z-index: 1;
-}
-
-.fade-enter.fade-enter-active .page {
-  opacity: 1;
-  transition: opacity 450ms ease-in;
 }
 
 body {

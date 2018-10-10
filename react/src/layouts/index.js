@@ -20,10 +20,10 @@ import { SideBarContext } from "../components/SideBarContext";
 import UsersPage from "../components/user/UsersPage";
 import UserPageCreate from "../components/user/UserPageCreate";
 import UserPage from "../components/user/UserPage";
-import CreateCar from "../components/car/CreateCar";
+/*import CreateCar from "../components/car/CreateCar";
 import DetailCar from "../components/car/DetailCar";
 import CarsPage from "../components/car/CarsPage";
-import Api from "../components/api/Api";
+import Api from "../components/api/Api";*/
 import ForgetPassword from "../components/user/auth/ForgetPassword";
 import Login from "../components/user/auth/Login";
 import Signup from "../components/user/auth/Signup";
@@ -99,8 +99,7 @@ class App extends Component {
           {props.page}
         </div>
       );
-    };
-    const propstoshare = this.props.children ? this.props.children.props : {};
+    }; 
     const { me: Me, validation } = this.props;
 
     return (
@@ -126,7 +125,7 @@ class App extends Component {
                   <SideBar />
                   <div className="md-cell md-cell--10">
                   {Me.loading && <Loading />}
-                  {!global.isSSR || (Me.error && <NotAuth />)}
+                  {(process.env.GATSBY_BUILD_STAGE!=="build-html") && (Me.error && <NotAuth />)}
                   <Header location={location} />
                   {!Me.loading &&
                     !Me.error &&
@@ -193,7 +192,7 @@ const FadeTransitionRouter = ({ location, children }) => {
           </CSSTransition>
         </TransitionGroup>
   );
-};
+}
 
 const USER_QUERY = gql`
   query Me {

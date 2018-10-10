@@ -1,14 +1,13 @@
 import React from "react";
 const preferDefault = m => (m && m.default) || m;
 let Layout;
-import "tachyons";
+//import "tachyons";
 //import { createStore, combineReducers } from "redux";
 
 import { ApolloProvider } from "react-apollo";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { setContext } from "apollo-link-context";
+import { InMemoryCache } from "apollo-cache-inmemory"; 
 
 const materializeAsync = () =>
   import(/* webpackChunkName: "materialize" */ "./components/materialize");
@@ -76,17 +75,13 @@ export const wrapPageElement = ({ element, props }) => {
   // const { lng } = props.pageContext;
   // if (!lng)
   return (
-      <Layout>{element}</Layout>
+      <Layout location={props.location}>{element}</Layout>
   );
 };
 
 export const wrapRootElement = ({ element }) => {
   return (
     <ApolloProvider client={client}>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      />
       {element}
     </ApolloProvider>
   );

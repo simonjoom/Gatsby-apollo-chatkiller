@@ -255,7 +255,7 @@ const queue = {
   getResourcesForPathnameSync: path => {
     const page = findPage(path)
     if (page) {
-      return pathScriptsCache[page.matchPath?page.matchPath:page.path]
+      return pathScriptsCache[page.path]
     } else if (path !== `/404.html`) {
       return queue.getResourcesForPathnameSync(`/404.html`)
     } else {
@@ -308,7 +308,7 @@ const queue = {
 
       // Use the path from the page so the pathScriptsCache uses
       // the normalized path.
-      path = page.matchPath?page.matchPath:page.path
+      path = page.path
 
       // Check if it's in the cache already.
       if (pathScriptsCache[path]) {
