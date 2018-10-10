@@ -4,7 +4,6 @@ import { graphql, compose } from "react-apollo";
 import { navigate } from "gatsby";
 import gql from "graphql-tag";
 import Password from "./Password";
-//import Button from '@material-ui/core/Button'
 import { withApollo } from "react-apollo";
 import ProgressBar from "../../../reactLIB/ProgressBar";
 import Card from "../../../reactLIB/Card";
@@ -34,21 +33,21 @@ class Signup extends Component {
     typeof M !== "undefined" && M.toast({ html: toastHTML });
   }
 
-  onChange(statePasword) {
+  onChange = statePasword => {
     this.setState({
       password: statePasword.password,
       inputValidation2: statePasword.inputValidation2
     });
-  }
+  };
 
-  validateEmail(email) {
+  validateEmail = email => {
     this.pass = validator.validate(email);
     return this.pass;
-  }
-  validateName(name) {
+  };
+  validateName = name => {
     this.pass = name.length > 0;
     return this.pass;
-  }
+  };
   calculateBuffer() {
     let data = "";
     if (this.state.activeStep === 0) {
@@ -113,15 +112,9 @@ class Signup extends Component {
     this.inputRef = ref;
   };
   render() {
-    const ButtonNext = ({ index, icon = "navigate_next" }) =>
-      this.state.activeStep === index ? (
-        <Button
-          onClick={this.handleNext}
-          type="material"
-          icon={icon}
-          floating
-        />
-      ) : null;
+    const ButtonNext = ({ index, icon = "navigate_next" }) => (
+      <Button onClick={this.handleNext} type="material" icon={icon} floating />
+    );
     return (
       <div className="paperOut">
         <Card>

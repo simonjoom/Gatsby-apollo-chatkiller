@@ -47,11 +47,13 @@ export const replaceHydrateFunction = async () => {
     const renderFn = process.env.NODE_ENV !== 'production' ? ReactDOM.render : ReactDOM.hydrate;
     if (/comp|inter|loaded/.test(document.readyState)) {
       Waves.displayEffect();
+        M.startTextFields()
     } else {
       document.addEventListener(
         "DOMContentLoaded",
         function() {
           Waves.displayEffect();
+        M.startTextFields()
         },
         false
       );

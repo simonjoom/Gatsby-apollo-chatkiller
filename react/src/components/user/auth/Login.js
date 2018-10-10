@@ -2,25 +2,31 @@ import React, { Component } from "react";
 import { AUTH_TOKEN } from "../../../constants/constants";
 import { graphql, compose, withApollo } from "react-apollo";
 import { navigate } from "gatsby";
-import gql from "graphql-tag"; 
+import gql from "graphql-tag";
 import Button from "../../../reactLIB/Button";
 import Card from "../../../reactLIB/Card";
-import Input from "../../../reactLIB/Input"; 
+import Input from "../../../reactLIB/Input";
+var validator = require("email-validator");
 
 export class Login extends Component {
   constructor(props) {
-    super(props)
-
+    super(props);
     this.state = {
       email: null,
       password: "",
       name: "",
-      loading: false,
-    }
- 
-    this.validateEmail = this.validateEmail.bind(this)
-    this.validatePassword = this.validatePassword.bind(this)
+      loading: false
+    };
   }
+
+  validateEmail = email => {
+    this.pass = validator.validate(email);
+    return this.pass;
+  };
+  validatePassword = () => {
+    console.log("validatePassword", !!this.state.password);
+    return !!this.state.password;
+  };
 
   notifyAboutComment(comment) {
     var toastHTML =
@@ -29,50 +35,42 @@ export class Login extends Component {
       "</span><button class='btn-flat toast-action'>Undo</button>";
     typeof M !== "undefined" && M.toast({ html: toastHTML });
   }
-  /*validateEmail(email) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-   console.log("valide",re.test(email))
-    return re.test(email);
-  }*/
-  validateEmail() {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.state.email)
-  }
-
-  validatePassword() {
-    return !!this.state.password
-  }
 
   render() {
     return (
       <div className="paperOut">
         <Card>
           <h4 className="mv3">Login</h4>
-          <div className="md-grid" style={{ width: "100%", marginTop: 20 }}>
+          <form className="md-grid" style={{ width: "100%", marginTop: 20 }}>
             <Input
               id="email"
-              value={this.state.email}
-              onChange={e => this.setState({ email: e.target.value })}
-              type="email"
-              validate
-              success={this.validateEmail(this.state.email)}
               label="Email"
               placeholder="Your email address"
+              type="email"
+              value={this.state.email}
+              onChange={e => this.setState({ email: e.target.value })}
+              validate
+              success={this.validateEmail(this.state.email)}
               required
               s={12}
             />
             <Input
               id="password"
-              value={this.state.password}
-              onChange={e => this.setState({ password: e.target.value })}
-              type="password"
-              validate
-              success={this.validatePassword()}
               label="Password"
               placeholder="Your Password"
+              type="password"
+              name="password"
+              value={this.state.password}
+              autocomplete="off"
+              onChange={e => {
+                console.log(e.target);
+                this.setState({ password: e.target.value });
+              }} 
+              success={this.validatePassword()}
               required
               s={12}
             />
-          </div>
+          </form>
           <div
             className="flex"
             style={{ display: "flex", justifyContent: "center" }}
@@ -127,7 +125,7 @@ export class Login extends Component {
         // this.props.history.push(`/`)
         // window.location.reload()
       })
-      .catch(e => { 
+      .catch(e => {
         this.notifyAboutComment(e.graphQLErrors[0].message);
       });
   };
