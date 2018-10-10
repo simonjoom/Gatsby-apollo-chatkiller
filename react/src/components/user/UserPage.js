@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
+import { globalHistory } from "@reach/router";
 import { navigate } from "gatsby";
 import Post from "../post/Post";
 import NotAuth from "../error/NotAuth";
@@ -195,8 +196,8 @@ export default compose(
   graphql(USER_QUERY, {
     name: "userQuery",
     options: props => {
-      const pathname = props.location.pathname;
-      const matchPath = props.pathContext.matchPath;
+      const pathname = globalHistory.location.pathname;
+      const matchPath = props.path;
       const id = getIdfromRegexPath(pathname, matchPath);
       return {
         variables: {

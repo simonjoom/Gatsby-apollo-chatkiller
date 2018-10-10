@@ -99,7 +99,7 @@ class App extends Component {
           {props.page}
         </div>
       );
-    }; 
+    };
     const { me: Me, validation } = this.props;
 
     return (
@@ -136,7 +136,10 @@ class App extends Component {
                   <FadeTransitionRouter location={location}>
                      <Page path="/z/users" page={<UsersPage />} />
                       <Page path="/z/user/create" page={<UserPageCreate />} />
-                      <Page path="/z/user/:id" page={<UserPage />} />
+                      <Page
+                        path="/z/user/:id"
+                        page={<UserPage path="/z/user/:id" />}
+                      />
                       <Page path="/z/chats" page={<ChatsPage />} />
                       <Page path="/z/login" page={<Login />} />
                       <Page path="/z/signup" page={<Signup />} />
