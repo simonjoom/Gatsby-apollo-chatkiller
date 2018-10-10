@@ -7,6 +7,7 @@ import Loading from "../components/error/Loading";
 import NotAuth from "../components/error/NotAuth";
 import "./index.scss";
 import "../index.css";
+import Badge from '../reactLIB/Badge'
 /*import {
   BrowserRouter as Router,
   Route,
@@ -165,9 +166,10 @@ class App extends Component {
                 </div>
                 </div>
                 </div>
-                <div className="collapsible-header">
-                  <i className="material-icons">whatshot</i>
-                  OPENCHAT
+                <div className="collapsible-header" style={{alignItems: 'center'}}>
+                <img src="/assets/starter-logo-1024.png" width="40px" height="40px" />
+                    <p style={{marginLeft: 20}}>Need Help?</p>
+                    <Badge newIcon>4</Badge>
                 </div>
               </li>
             </ul>

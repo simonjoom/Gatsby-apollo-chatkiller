@@ -26,8 +26,8 @@ class MenuAvatar extends Component {
     return (
       <Dropdown
         trigger={
-          <div className="btn btn-large">
-              <img src="/assets/starter-logo-1024.png" />
+          <div className="btn btn-medium">
+              <img src="/assets/starter-logo-1024.png" width="25px" style={{marginTop: '6px'}}/>
           </div>
         }
       >

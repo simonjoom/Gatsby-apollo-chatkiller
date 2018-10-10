@@ -18,8 +18,8 @@ class CreateChat extends React.Component {
 
   render() {
     return (
-      <div style={{ backgroundColor: "#7480C2" }}>
-        <div className="paperIn">
+      <div style={{ backgroundColor: "#F9FAFD", height: '80px' }}>
+        {/* <div className="paperIn"> */}
           <form onSubmit={this.handleChat}>
             <div className="md-grid">
               <Input 
@@ -29,14 +29,14 @@ class CreateChat extends React.Component {
                 onChange={e => this.setState({ message: e.target.value })}
                 value={this.state.message}
                 style={{ width: "80%" }}
-                s={9}
+                s={12}
                 inline
                 buttonIcon={
                   <Button
                     onClick={this.handleNext}
                     disabled={!this.state.message}
                     type="submit"
-                    large
+                    
                     style={{ marginLeft: "10px" }}
                   >
                     Send
@@ -45,7 +45,7 @@ class CreateChat extends React.Component {
               />
             </div>
           </form>
-        </div>
+        {/* </div> */}
       </div>
     );
   }
